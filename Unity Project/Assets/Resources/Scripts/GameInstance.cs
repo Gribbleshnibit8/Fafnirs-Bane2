@@ -54,7 +54,7 @@ public class GameInstance : MonoBehaviour
         NextSpawn = "spawnPoint";
 
 
-        Application.LoadLevel("Test Scene 1");
+        Application.LoadLevel("Test Scene");
     }
 
     /// <summary>
