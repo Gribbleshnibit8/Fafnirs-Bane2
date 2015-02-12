@@ -129,10 +129,10 @@ public class AIPath : MonoBehaviour {
 	
 	/** Only when the previous path has been returned should be search for a new path */
 	protected bool canSearchAgain = true;
-
+	
 	protected Vector3 lastFoundWaypointPosition;
 	protected float lastFoundWaypointTime = -9999;
-
+	
 	/** Returns if the end-of-path has been reached
 	 * \see targetReached */
 	public bool TargetReached {
@@ -181,9 +181,9 @@ public class AIPath : MonoBehaviour {
 		
 		lastRepath = -9999;
 		canSearchAgain = true;
-
+		
 		lastFoundWaypointPosition = GetFeetPosition ();
-
+		
 		if (startHasRun) {
 			//Make sure we receive callbacks when paths complete
 			seeker.pathCallback += OnPathComplete;
@@ -300,13 +300,13 @@ public class AIPath : MonoBehaviour {
 			float magn = dir.magnitude;
 			dir /= magn;
 			int steps = (int)(magn/pickNextWaypointDist);
-
-
+			
+			
 			for (int i=0;i<=steps;i++) {
 				CalculateVelocity (p1);
 				p1 += dir;
 			}
-
+			
 		}
 	}
 	
@@ -314,7 +314,7 @@ public class AIPath : MonoBehaviour {
 		if (controller != null) {
 			return tr.position - Vector3.up*controller.height*0.5F;
 		}
-
+		
 		return tr.position;
 	}
 	
@@ -323,10 +323,10 @@ public class AIPath : MonoBehaviour {
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
-
+		
 		//Rotate towards targetDirection (filled in by CalculateVelocity)
-		RotateTowards (targetDirection);
-	
+		// RotateTowards (targetDirection);
+		
 		if (navController != null) {
 		} else if (controller != null) {
 			controller.SimpleMove (dir);
@@ -346,7 +346,7 @@ public class AIPath : MonoBehaviour {
 	
 	protected float XZSqrMagnitude (Vector3 a, Vector3 b) {
 		float dx = b.x-a.x;
-		float dz = b.z-a.z;
+		float dz = b.y-a.y;
 		return dx*dx + dz*dz;
 	}
 	
@@ -379,7 +379,7 @@ public class AIPath : MonoBehaviour {
 			if (currentWaypointIndex < vPath.Count-1) {
 				//There is a "next path segment"
 				float dist = XZSqrMagnitude (vPath[currentWaypointIndex], currentPosition);
-					//Mathfx.DistancePointSegmentStrict (vPath[currentWaypointIndex+1],vPath[currentWaypointIndex+2],currentPosition);
+				//Mathfx.DistancePointSegmentStrict (vPath[currentWaypointIndex+1],vPath[currentWaypointIndex+2],currentPosition);
 				if (dist < pickNextWaypointDist*pickNextWaypointDist) {
 					lastFoundWaypointPosition = currentPosition;
 					lastFoundWaypointTime = Time.time;
@@ -394,10 +394,10 @@ public class AIPath : MonoBehaviour {
 		
 		Vector3 dir = vPath[currentWaypointIndex] - vPath[currentWaypointIndex-1];
 		Vector3 targetPosition = CalculateTargetPoint (currentPosition,vPath[currentWaypointIndex-1] , vPath[currentWaypointIndex]);
-
+		
 		
 		dir = targetPosition-currentPosition;
-		dir.y = 0;
+		dir.z = 0;
 		float targetDist = dir.magnitude;
 		
 		float slowdown = Mathf.Clamp01 (targetDist / slowdownDistance);
@@ -412,14 +412,17 @@ public class AIPath : MonoBehaviour {
 			return Vector3.zero;
 		}
 		
-		Vector3 forward = tr.forward;
+		//Vector3 forward = tr.forward;
+		Vector3 forward = dir;
 		float dot = Vector3.Dot (dir.normalized,forward);
 		float sp = speed * Mathf.Max (dot,minMoveScale) * slowdown;
 		
 		
 		if (Time.deltaTime	> 0) {
-			sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
+			//sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
+			sp = speed;
 		}
+		Debug.Log("Velocity is " + sp);
 		return forward*sp;
 	}
 	
@@ -437,7 +440,7 @@ public class AIPath : MonoBehaviour {
 		rot = Quaternion.Slerp (rot,toTarget,turningSpeed*Time.deltaTime);
 		Vector3 euler = rot.eulerAngles;
 		euler.z = 0;
-		euler.x = 0;
+//		euler.x = 0;
 		rot = Quaternion.Euler (euler);
 		
 		tr.rotation = rot;
@@ -452,8 +455,8 @@ public class AIPath : MonoBehaviour {
 	 * \todo This function uses .magnitude quite a lot, can it be optimized?
 	 */
 	protected Vector3 CalculateTargetPoint (Vector3 p, Vector3 a, Vector3 b) {
-		a.y = p.y;
-		b.y = p.y;
+		a.z = p.z;
+		b.z = p.z;
 		
 		float magn = (a-b).magnitude;
 		if (magn == 0) return a;
