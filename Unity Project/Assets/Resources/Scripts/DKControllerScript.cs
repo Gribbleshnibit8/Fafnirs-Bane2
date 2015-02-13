@@ -1,68 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DKControllerScript : MonoBehaviour
+public class DKControllerScript : MonoBehaviour 
 {
+	bool moving = false;
+	// Use this for initialization
+	void Start () 
+	{
 
-    public float moveSpeed = 3.0f;
-    public float moveDistance = 1.0f;
-    bool moving = false;
-    Vector2 startPosition = new Vector2(0, 0);
-    Vector2 endPosition = new Vector2(0, 0);
-    float horizontalChange = 0.0f;
-    float verticalChange = 0.0f;
-    //bool facingRight = false;
-
-    // Use this for initialization
-    void Start()
-    {
-	    
-    }
+	}
 	
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        horizontalChange = Input.GetAxis("Horizontal");
-        verticalChange = Input.GetAxis("Vertical");
+	// Update is called once per frame
+	void FixedUpdate () 
+	{
+		//Debug.Log (Input.GetAxis("Vertical"));
+		if (Mathf.Abs (Input.GetAxis("Horizontal")) > 0 && moving == false)
+		{
+			moving = true;
+			Debug.Log("You are going sideways!!");
+			StartCoroutine(characterController.gridMove(gameObject, Input.GetAxis ("Horizontal"), 0.0f, this));
+		}
+	
+		else if (Mathf.Abs (Input.GetAxis("Vertical")) > 0 && moving == false)
+		{
+			moving = true;
+			Debug.Log("You are going up and down!!");
+			StartCoroutine(characterController.gridMove(gameObject, 0.0f, Input.GetAxis ("Vertical"), this));
+		}
+		
+	}
 
-        if (moving == false)
-        {
-            if (horizontalChange != 0)
-            {
-                startPosition = rigidbody2D.position;
-                endPosition = new Vector2(startPosition.x + (moveDistance * (Mathf.Abs(horizontalChange) / horizontalChange)), startPosition.y);
-                moving = true;
-                rigidbody2D.velocity = new Vector2(moveSpeed * (Mathf.Abs(horizontalChange) / horizontalChange), rigidbody2D.velocity.y);
-            } else if (verticalChange != 0)
-            {
-                startPosition = rigidbody2D.position;
-                endPosition = new Vector2(startPosition.x, startPosition.y + (moveDistance * (Mathf.Abs(verticalChange) / verticalChange)));
-                moving = true;
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, moveSpeed * (Mathf.Abs(verticalChange) / verticalChange));
-            }
-        } else if (moving == true)
-        {
-            if (Vector2.Distance(rigidbody2D.position, startPosition) >= moveDistance)
-            {
-                rigidbody2D.velocity = new Vector2(0, 0);
-                rigidbody2D.position = endPosition;
-                moving = false;
-            } 
+	public void setMoving(bool settingMove)
+	{
+		moving = settingMove;
+	}
 
-        }
-
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("hit the collision box");
-        if (col.gameObject.CompareTag("walls"))
-        {
-            Debug.Log("hit the collision box again");
-            rigidbody2D.velocity = new Vector2(0, 0);
-            rigidbody2D.position = startPosition;
-            moving = false;	
-        }
-       
-    }
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		Debug.Log ("hit the collision box");
+		if(col.gameObject.CompareTag("walls"))
+		{
+			Debug.Log ("hit the collision box again");
+			rigidbody2D.velocity = new Vector2 (0, 0);
+			//rigidbody2D.position = new Vector2 (Mathf.rigidbody2D.position.x;
+		}
+		if(col.gameObject.CompareTag("newGame"))
+		{
+			Debug.Log ("hit the newGame box");
+			Application.LoadLevel("Test Scene");
+		}
+		if(col.gameObject.CompareTag("ExitPoint"))
+		{
+			Debug.Log ("hit the newGame box");
+			Application.LoadLevel("graveyard");
+		}
+		if(col.gameObject.CompareTag("graveyardExit"))
+		{
+			Debug.Log ("hit the newGame box");
+			Application.LoadLevel("crypt");
+		}
+	}
 }

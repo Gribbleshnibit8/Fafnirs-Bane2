@@ -422,7 +422,7 @@ public class AStarAI : MonoBehaviour {
 			//sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
 			sp = speed;
 		}
-		Debug.Log("Velocity is " + sp);
+//		Debug.Log("Velocity is " + sp);
 		return forward*sp;
 	}
 	
