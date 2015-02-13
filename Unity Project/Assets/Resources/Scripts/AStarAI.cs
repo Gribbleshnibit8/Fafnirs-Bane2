@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Pathfinding;
 using Pathfinding.RVO;
 
+// ReSharper disable InconsistentNaming
+
 /** AI for following paths.
  * This AI is the default movement script which comes with the A* Pathfinding Project.
  * It is in no way required by the rest of the system, so feel free to write your own. But I hope this script will make it easier
@@ -302,7 +304,9 @@ public class AStarAI : MonoBehaviour {
 			int steps = (int)(magn/pickNextWaypointDist);
 			
 			
-			for (int i=0;i<=steps;i++) {
+			for (int i=0;i<=steps;i++)
+			{
+				p1.z = 0;					// Wesley Added this to null out the Z axis each step
 				CalculateVelocity (p1);
 				p1 += dir;
 			}
@@ -346,8 +350,8 @@ public class AStarAI : MonoBehaviour {
 	
 	protected float XZSqrMagnitude (Vector3 a, Vector3 b) {
 		float dx = b.x-a.x;
-		float dz = b.y-a.y;
-		return dx*dx + dz*dz;
+		float dy = b.y-a.y;
+		return dx * dx + dy * dy;
 	}
 	
 	/** Calculates desired velocity.
@@ -419,8 +423,8 @@ public class AStarAI : MonoBehaviour {
 		
 		
 		if (Time.deltaTime	> 0) {
-			//sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
-			sp = speed;
+			sp = Mathf.Clamp(sp, 0, targetDist / (Time.deltaTime * 2));
+			//sp = speed;
 		}
 //		Debug.Log("Velocity is " + sp);
 		return forward*sp;
