@@ -23,8 +23,5 @@ Unity Project/Assets/AstarPathfindingProject/ExampleScenes/
 Unity Project/Assets/AstarPathfindingProject/ExampleScenes.meta
 Unity Project/Assets/AstarPathfindingProject/
 Unity Project/Assets/X-UniTMX/
-Unity Project/Assets/Plugins/AstarPathfindingProject/
-Unity Project/Assets/AstarPathfindingEditor/
-Unity Project/Assets/Plugins/AstarPathfindingProject.meta
-Unity Project/Assets/AstarPathfindingEditor.meta
-Unity Project/Assets/Plugins.meta
+Unity Project/Assets/UnityVS/
+Unity Project/Assets/UnityVS.meta

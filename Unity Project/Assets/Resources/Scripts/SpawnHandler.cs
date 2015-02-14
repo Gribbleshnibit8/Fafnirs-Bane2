@@ -11,8 +11,13 @@ public class SpawnHandler : MonoBehaviour
         var spawn = SpawnHandler.GetSpawnPoint(spawnName);
         foreach (var p in playerList)
         {
-            Debug.Log("Moving Character " + p.name + " to " + spawn.name);
-            p.transform.position = spawn.transform.position;
+			Debug.Log("Moving Character " + p.name + " to " + spawn.name + " at " + spawn.transform.position);
+			p.transform.position = spawn.transform.position;
+        }
+        
+        foreach (var p in playerList)
+        {
+        	Debug.Log(p.name + " is at " + p.transform.position);
         }
         return true;
     }
@@ -36,7 +41,7 @@ public class SpawnHandler : MonoBehaviour
                     Debug.Log("Found spawn point " + s.name);
                     foreach (Transform t in s.transform)
                     {
-                        if (t.name.Equals("spawnPoint"))
+                        if (t.name.ToLower().Equals("spawnpoint"))
                             return t.gameObject;
                     }
                 }
