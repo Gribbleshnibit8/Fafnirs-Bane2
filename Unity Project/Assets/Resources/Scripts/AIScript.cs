@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 
-public class LerpExample : MonoBehaviour
+public class AIScript : MonoBehaviour
 {
 	/// <summary>
 	/// The time taken to move from the start to finish positions
@@ -331,14 +331,11 @@ public class LerpExample : MonoBehaviour
 	#endregion
 
 
-	private List<Vector3> vPath;
-
 	void Update()
 	{
 		if (Target != null && _isLerping == false)
 		{
 			StartLerping();
-			vPath = Path.vectorPath;
 		}
 	}
 	
