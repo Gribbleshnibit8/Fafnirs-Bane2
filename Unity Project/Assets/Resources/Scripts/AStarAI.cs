@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
-using Pathfinding.RVO;
+//using Pathfinding.RVO;
 
 /** AI for following paths.
  * This AI is the default movement script which comes with the A* Pathfinding Project.
