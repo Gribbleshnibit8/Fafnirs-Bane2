@@ -11,10 +11,8 @@ GameObject:
   - 54: {fileID: 5421902}
   - 212: {fileID: 21207070}
   - 95: {fileID: 9507070}
-  - 114: {fileID: 11407070}
   - 114: {fileID: 11421902}
-  - 114: {fileID: 11421904}
-  - 114: {fileID: 11421906}
+  - 114: {fileID: 11474542}
   m_Layer: 31
   m_Name: Donkey Kong
   m_TagString: Untagged
@@ -48,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: -39.5, z: 0}
+  m_LocalPosition: {x: 11.5, y: -38.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 407072}
@@ -142,19 +140,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11407070
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107070}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec26fdbbdaed720488efc7731968a188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  moveDistance: 1
 --- !u!114 &11421902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,8 +157,8 @@ MonoBehaviour:
   startEndModifier:
     priority: 1
     addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
+    exactStartPoint: 0
+    exactEndPoint: 0
     useRaycasting: 0
     mask:
       serializedVersion: 2
@@ -183,7 +168,7 @@ MonoBehaviour:
     tagsChange: -1
     tagsSet: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &11421904
+--- !u!114 &11474542
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -191,31 +176,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 107070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8643a03c3b542784da8b2db0beb33cf4, type: 3}
+  m_Script: {fileID: 11500000, guid: f8dc15d866354ec4b893f0bcc300eaa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repathRate: .5
-  target: {fileID: 0}
-  canSearch: 1
-  canMove: 1
-  speed: .100000001
-  turningSpeed: 12
-  slowdownDistance: 1.5
-  pickNextWaypointDist: 2
-  forwardLook: 3
-  endReachedDistance: .200000003
-  closestOnPathCheck: 1
---- !u!114 &11421906
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393c319594ced3b418b74351ea63e5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Speed: .5
+  RepathRate: 1
+  Target: {fileID: 0}
+  CanSearch: 1
+  CanMove: 1
+  ClosestOnPathCheck: 1
+  PickNextWaypointDist: 2
 --- !u!124 &12407070
 Behaviour:
   m_ObjectHideFlags: 1

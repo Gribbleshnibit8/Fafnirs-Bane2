@@ -11,7 +11,19 @@ public class TransitionScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        GameInstance.NextSpawn = LinkedSpawn;
-        Application.LoadLevel(LinkedScene);
+    	Debug.Log("Entered by " + other.name);
+		Transition();
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+		Debug.Log("Entered by " + other.name);
+    	Transition();
+    }
+    
+    void Transition()
+    {
+		GameInstance.NextSpawn = LinkedSpawn;
+		Application.LoadLevel(LinkedScene);
     }
 }

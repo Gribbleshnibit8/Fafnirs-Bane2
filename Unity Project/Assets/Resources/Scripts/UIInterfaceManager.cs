@@ -22,11 +22,8 @@ public class UIInterfaceManager : MonoBehaviour
     private static GameObject _controlsOverlay;
     public static GameObject Overlay
     {
-        get
-        {
-            if (_controlsOverlay == null)
-                _controlsOverlay = (GameObject)Instantiate(Resources.Load("UI/Interface"));
-            return _controlsOverlay;
+        get {
+	        return _controlsOverlay ?? (_controlsOverlay = (GameObject) Instantiate(Resources.Load("UI/Interface")));
         }
     }
 
@@ -35,5 +32,20 @@ public class UIInterfaceManager : MonoBehaviour
     {
         DontDestroyOnLoad(Overlay);
     }
+
+
+	public void ActionsButtonPress()
+	{
+		Debug.Log("Pressed the actions button");
+	}
+
+	public void MenuButtonPressed()
+	{
+		Debug.Log("Pressed the menu button");
+	}
+
+
+
+
 
 }
