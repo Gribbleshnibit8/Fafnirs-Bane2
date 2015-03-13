@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class InfoMessage : MonoBehaviour
@@ -12,90 +13,138 @@ public class InfoMessage : MonoBehaviour
 		Conversation
 	}
 
-	private static UILabel TopLabel;
-	private static UILabel LeftLabel;
-	private static UILabel RightLabel;
-	private static UILabel ConversationLabel;
+	private static InfoWindow _top;
+	private static InfoWindow _left;
+	private static InfoWindow _right;
+	private static InfoWindow _conversationLabel;
 
-	private static float topTimer = 0;
-	private static float leftTimer = 0;
-	private static float rightTimer = 0;
+	private static float _topTimer = 0;
+	private static float _leftTimer = 0;
+	private static float _rightTimer = 0;
+	private static float _conversationTimer = 0;
 
 	void Awake()
 	{
-		TopLabel = GetComponentsInChildren<UILabel>()[0];
+		_top = GetComponentsInChildren<InfoWindow>()[0];
+		_left = GetComponentsInChildren<InfoWindow>()[1];
+		_right = GetComponentsInChildren<InfoWindow>()[2];
+		//_conversationLabel = GetComponentInChildren<InfoWindow>()[3];
 	}
 
-	// Use this for initialization
-	void Start ()
+	void Start()
 	{
-		TopLabel.text = "";
-		ShowMessage(Location.Top, "Here is a message");
+		
+	}
+
+	private bool doonce = true;
+	void Update()
+	{
+		if (doonce)
+		{
+			ShowMessage(Location.Top, "Some Text");
+			doonce = false;
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	//void Update () {
 
-		if (topTimer > 0) topTimer -= Time.deltaTime;
-		else
+	//	if (_topTimer > 0) _topTimer -= Time.deltaTime;
+	//	else
+	//	{
+	//		_topTimer = 0;
+	//		_top.Label = "";
+	//	}
+
+	//	if (_leftTimer > 0) _leftTimer -= Time.deltaTime;
+	//	else
+	//	{
+	//		_leftTimer = 0;
+	//		_left.Label = "";
+	//	}
+
+	//	if (_rightTimer > 0) _rightTimer -= Time.deltaTime;
+	//	else
+	//	{
+	//		_rightTimer = 0;
+	//		_right.Label = "";
+	//	}
+
+	//	if (_conversationTimer > 0) _conversationTimer -= Time.deltaTime;
+	//	else
+	//	{
+	//		_conversationTimer = 0;
+	//	}
+
+
+	//}
+
+
+	const float defaultDuration = 5f;
+ 
+	// Simple creation: can't be stopped even if lopping
+	////--------------------------------------------
+	//StartCoroutine(GenericTimer.Start(defaultDuration, true, () =>
+	//{
+	//  // Do something at the end of the 3 seconds (duration)
+	//  //...
+	//}));
+ 
+ 
+	//// Advanced creation: you can launch it later and stop it
+	////--------------------------------------------
+	//Timer t = new GenericTimer(duration, false, () =>
+	//{
+	//  //...
+	//});
+ 
+	//// Launch the timer
+	//StartCoroutine(t.Start());
+ 
+	//// Ask to stop it next frame
+	//t.Stop();
+
+
+
+
+
+	public static void ShowMessage(Location loc, string content, int time, bool background)
+	{
+		if (loc == Location.Top)
 		{
-			topTimer = 0;
-			TopLabel.text = "";
+			_top.Label = content;
+			_topTimer = time;
+			GenericTimer.Start(5, ClearLabel(_top));
 		}
-
-		if (leftTimer > 0) leftTimer -= Time.deltaTime;
-		else
+		else if (loc == Location.Left)
 		{
-			leftTimer = 0;
-			LeftLabel.text = "";
+			_left.Label = content;
+			GenericTimer.Start(5, ClearLabel(_left));
 		}
-
-		if (rightTimer > 0) rightTimer -= Time.deltaTime;
-		else
+		else if (loc == Location.Right)
 		{
-			rightTimer = 0;
-			RightLabel.text = "";
+			_right.Label = content;
+			GenericTimer.Start(5, ClearLabel(_right));
 		}
-
-
+		else if (loc == Location.Conversation)
+		{
+			_conversationLabel.Label = content;
+			_conversationTimer = time;
+		}
 	}
 
 	public static void ShowMessage(Location loc, string content)
 	{
-		if (loc == Location.Top)
-			ShowMessageTop(content);
-		else if (loc == Location.Left)
-			ShowMessageLeft(content);
-		else if (loc == Location.Right)
-			ShowMessageRight(content);
-		else if (loc == Location.Conversation)
-			ShowMessageConversation(content);
-
+		ShowMessage(loc, content, 5, false);
 	}
 
-	private static void ShowMessageTop(string content)
+
+	private static Action ClearLabel(InfoWindow window)
 	{
-		TopLabel.text = content;
-		topTimer = 5;
+		window.Label = "";
+		//window.Background = false;
+		return null;
 	}
-
-	private static void ShowMessageLeft(string content)
-	{
-
-	}
-
-	private static void ShowMessageRight(string content)
-	{
-
-	}
-
-	private static void ShowMessageConversation(string content)
-	{
-
-	}
-
-
-
 
 
 }

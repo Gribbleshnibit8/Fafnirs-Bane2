@@ -18,38 +18,42 @@ public class BattleMenu : MonoBehaviour
 
 	public VitalBarBasic EnergyBar;
 
-	void Awake()
-	{
-		Debug.Log("Action Handler Start");
-		ActionQueue = GameObject.Find("Action Queue");
 
-		foreach (var child in GetComponentsInChildren<VitalBarBasic>())
+	#region Unity Functions
+
+		void Awake()
 		{
-			if (child.name.Equals("Health Bar"))
-				HealthBar = child;
-			else if (child.name.Equals("Energy Bar"))
-				EnergyBar = child;
+			Debug.Log("Action Handler Start");
+			ActionQueue = GameObject.Find("Action Queue");
+
+			foreach (var child in GetComponentsInChildren<VitalBarBasic>())
+			{
+				if (child.name.Equals("Health Bar"))
+					HealthBar = child;
+				else if (child.name.Equals("Energy Bar"))
+					EnergyBar = child;
+			}
+
 		}
 
-	}
-
-
-	// Use this for initialization
-	void Start ()
-	{
-		HealthBar.MaxValue = 10;
-		EnergyBar.MaxValue = 5;
-		HealthBar.UpdateDisplay();
-		EnergyBar.UpdateDisplay();
-	}
+		// Use this for initialization
+		void Start ()
+		{
+			HealthBar.MaxValue = 10;
+			EnergyBar.MaxValue = 5;
+			HealthBar.UpdateDisplay();
+			EnergyBar.UpdateDisplay();
+		}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-		ActionQueue.GetComponentInChildren<UIGrid>().Reposition();
-	}
+		// Update is called once per frame
+		void Update () 
+		{
+			ActionQueue.GetComponentInChildren<UIGrid>().Reposition();
+		}
 
-	/// <summary>
+	#endregion
+
+		/// <summary>
 	/// Instantiates a new action button, and sets it's position in the action queue,
 	/// refreshes the action queue grid, then returns the newly instantiated action.
 	/// If the queue is full, it returns a null value.
@@ -121,11 +125,11 @@ public class BattleMenu : MonoBehaviour
 
 	public void ActionOther()
 	{
-		Debug.Log("Action Other Clicked");
+		Debug.Log("Action Menu Clicked");
 		var action = AddActionToQueue();
 		if (action == null) return;
 
-		ActiveActionUpdater.ChangeActionName(action, "Other");
+		//ActiveActionUpdater.ChangeActionName(action, "Other");
 	}
 	#endregion
 
