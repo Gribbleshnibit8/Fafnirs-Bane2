@@ -4,21 +4,24 @@ using UnityEngine;
 public class OverworldMenu : MonoBehaviour
 {
 
-	public static GameObject OverworldNode;
+	public static OverworldNode.NodeData OverworldNode;
 
-	public static 
+		#region Unity Functions
 
+		void Awake()
+		{
 
-
-	#region Unity Functions
+		}
 
 		// Use this for initialization
-		void Start () {
-	
+		void Start () 
+		{
+
 		}
 	
 		// Update is called once per frame
-		void Update () {
+		void Update () 
+		{
 
 		}
 
@@ -31,6 +34,7 @@ public class OverworldMenu : MonoBehaviour
 	/// <param name="node"></param>
 	public static void NodeEntered(OverworldNode.NodeData node)
 	{
+		OverworldNode = node;
 		InfoMessage.ShowMessage(InfoMessage.Location.Top, node.Name, 5, true);
 		if (!String.IsNullOrEmpty(node.Dungeon)) OverworldActionList.EnterButton.SetActive(true);
 		if (node.IsTown) OverworldActionList.ShopButton.SetActive(true);
@@ -42,6 +46,18 @@ public class OverworldMenu : MonoBehaviour
 		OverworldActionList.EnterButton.SetActive(false);
 		OverworldActionList.ShopButton.SetActive(false);
 	}
+
+
+
+
+	#region Menu Buttons
+
+		public void EnterButton()
+		{
+			Application.LoadLevel(OverworldNode.Dungeon);
+		}
+
+	#endregion
 
 
 
