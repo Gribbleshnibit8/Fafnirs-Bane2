@@ -25,6 +25,7 @@ Unity Project/Assets/AstarPathfindingProject/
 Unity Project/Assets/X-UniTMX/
 Unity Project/Assets/UnityVS/
 Unity Project/Assets/UnityVS.meta
+<<<<<<< HEAD
 Unity Project/Assets/Plugins/AstarPathfindingProject/ExampleScenes/Materials/Projector Multiply.shader
 Unity Project/Assets/Plugins/AstarPathfindingProject/ExampleScenes/
 Unity Project/Assets/Plugins/AstarPathfindingProject/Core/
@@ -33,3 +34,11 @@ Unity Project/Assets/AstarPathfindingEditor/
 Unity Project/Assets/AstarPathfindingEditor.meta
 Unity Project/Assets/Plugins.meta
 Unity Project/Assets/Plugins/AstarPathfindingProject.meta
+=======
+Unity Project/Assets/InstantGui/
+Unity Project/Assets/GameBarCreationSystem/
+Unity Project/Assets/GameBarCreationSystem.meta
+Unity Project/Assets/InstantGui.meta
+Unity Project/Assets/Inventory/
+Unity Project/Assets/Inventory.meta
+>>>>>>> bb83cd75bbf965791afb6b895fa335c702deb580
