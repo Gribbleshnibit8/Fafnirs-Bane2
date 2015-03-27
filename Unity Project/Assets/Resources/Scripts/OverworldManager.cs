@@ -9,7 +9,7 @@ public class OverworldManager : MonoBehaviour
 
 	void Awake()
 	{
-		Character = GameObject.Find("Donkey Kong");
+		Character = GameObject.Find("Character");
 	}
 
 	// Use this for initialization
@@ -31,7 +31,8 @@ public class OverworldManager : MonoBehaviour
 				{
 					Debug.Log(hitInfo.transform.gameObject.name);
 					// Here you can check hitInfo to see which collider has been hit, and act appropriately.
-					NodeTouched(hitInfo);
+					if (hitInfo.transform.gameObject.GetComponent<OverworldNode>())
+						NodeTouched(hitInfo);
 				}
 			}
 		}
@@ -46,7 +47,8 @@ public class OverworldManager : MonoBehaviour
 			{
 				Debug.Log(hitInfo.transform.gameObject.name);
 				// Here you can check hitInfo to see which collider has been hit, and act appropriately.
-				NodeTouched(hitInfo);
+				if (hitInfo.transform.gameObject.GetComponent<OverworldNode>())
+					NodeTouched(hitInfo);
 			}
 		}
 

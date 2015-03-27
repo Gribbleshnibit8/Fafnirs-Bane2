@@ -91,6 +91,9 @@ public class AIPath2D : AIPath {
 		}
 	}
 
+	/// <summary>
+	/// Update this instance.
+	/// </summary>
 	public override void Update() 
 	{
 		
@@ -104,8 +107,10 @@ public class AIPath2D : AIPath {
 		if (navController != null) {
 		} else if (controller != null) {
 			controller.SimpleMove (dir);
-		} else if (rigid != null) {
-			rigid.AddForce (dir);
+		}
+		else if (rigid != null)
+		{
+			rigid.AddForce(dir);
 		} else {
 			transform.Translate (dir*Time.deltaTime, Space.World);
 		}

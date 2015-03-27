@@ -49,21 +49,45 @@ public class RootMenuManager : MonoBehaviour
 		return ActiveMenu.None;
 	}
 
+	public static void SetActiveMenu(ActiveMenu menu)
+	{
+		_titleMenu.SetActive(false);
+		_overworldMenu.SetActive(false);
+		_battleMenu.SetActive(false);
+		_storyMenu.SetActive(false);
+
+		switch (menu)
+		{
+			case ActiveMenu.TitleMenu:
+				_titleMenu.SetActive(true);
+				break;
+			case ActiveMenu.OverworldMenu:
+				_overworldMenu.SetActive(true);
+				break;
+			case ActiveMenu.BattleMenu:
+				_battleMenu.SetActive(true);
+				break;
+			case ActiveMenu.StoryMenu:
+				_storyMenu.SetActive(true);
+				break;
+		}
+	}
+
 	public static Component GetActiveMenuComponent(ActiveMenu menu)
 	{
-		if (menu == ActiveMenu.TitleMenu)
-			return _titleMenu.GetComponent<TitleMenu>();
-
-		if (menu == ActiveMenu.OverworldMenu)
-			return _overworldMenu.GetComponent<OverworldMenu>();
-
-		if (menu == ActiveMenu.BattleMenu)
-			return _battleMenu.GetComponent<BattleMenu>();
-
-		if (menu == ActiveMenu.StoryMenu)
-			return _storyMenu.GetComponent<StoryMenu>();
-
-		return null;
+		switch (menu)
+		{
+			case ActiveMenu.TitleMenu:
+				return _titleMenu.GetComponent<TitleMenu>();
+			case ActiveMenu.OverworldMenu:
+				return _overworldMenu.GetComponent<OverworldMenu>();
+			case ActiveMenu.BattleMenu:
+				return _battleMenu.GetComponent<BattleMenu>();
+			case ActiveMenu.StoryMenu:
+				return _storyMenu.GetComponent<StoryMenu>();
+			default:
+				return null;
+		}
 	}
 
 }

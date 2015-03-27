@@ -10,7 +10,8 @@ public class OverworldMenu : MonoBehaviour
 
 		void Awake()
 		{
-
+			OverworldActionList.EnterButton.SetActive(false);
+			OverworldActionList.ShopButton.SetActive(false);
 		}
 
 		// Use this for initialization

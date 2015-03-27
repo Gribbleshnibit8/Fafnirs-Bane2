@@ -53,7 +53,7 @@ public class BattleMenu : MonoBehaviour
 
 	#endregion
 
-		/// <summary>
+	/// <summary>
 	/// Instantiates a new action button, and sets it's position in the action queue,
 	/// refreshes the action queue grid, then returns the newly instantiated action.
 	/// If the queue is full, it returns a null value.
@@ -90,6 +90,7 @@ public class BattleMenu : MonoBehaviour
 		if (action == null) return;
 
 		ActiveActionUpdater.ChangeActionName(action, "Attack");
+
 	}
 
 	public void ActionSpell()
@@ -110,6 +111,8 @@ public class BattleMenu : MonoBehaviour
 		if (action == null) return;
 
 		ActiveActionUpdater.ChangeActionName(action, "Move");
+
+		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
 	}
 
 	public void ActionInventory()
