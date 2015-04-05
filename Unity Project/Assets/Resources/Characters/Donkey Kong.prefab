@@ -8,11 +8,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 407070}
-  - 54: {fileID: 5421902}
   - 212: {fileID: 21207070}
   - 95: {fileID: 9507070}
   - 114: {fileID: 11421902}
   - 114: {fileID: 11474542}
+  - 50: {fileID: 5059638}
+  - 61: {fileID: 6159638}
   m_Layer: 31
   m_Name: Donkey Kong
   m_TagString: Untagged
@@ -46,7 +47,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.5, y: -38.5, z: 0}
+  m_LocalPosition: {x: 2.5, y: -2.5, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 407072}
@@ -81,7 +82,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0
-  far clip plane: 10
+  far clip plane: 25
   field of view: 157
   orthographic: 1
   orthographic size: 3
@@ -96,28 +97,39 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
---- !u!54 &5421902
-Rigidbody:
+--- !u!50 &5059638
+Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107070}
-  serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_GravityScale: 1
+  m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+--- !u!61 &6159638
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107070}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .800000012, y: .800000012}
+  m_Center: {x: 0, y: 0}
 --- !u!81 &8107070
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107072}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &9207070
 Behaviour:
   m_ObjectHideFlags: 1
@@ -179,13 +191,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dc15d866354ec4b893f0bcc300eaa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: .5
-  RepathRate: 1
-  Target: {fileID: 0}
-  CanSearch: 1
-  CanMove: 1
-  ClosestOnPathCheck: 1
-  PickNextWaypointDist: 2
+  repathRate: .5
+  target: {fileID: 0}
+  canSearch: 1
+  canMove: 1
+  speed: .5
+  turningSpeed: 5
+  slowdownDistance: .600000024
+  pickNextWaypointDist: 2
+  forwardLook: 1
+  endReachedDistance: .200000003
+  closestOnPathCheck: 1
 --- !u!124 &12407070
 Behaviour:
   m_ObjectHideFlags: 1

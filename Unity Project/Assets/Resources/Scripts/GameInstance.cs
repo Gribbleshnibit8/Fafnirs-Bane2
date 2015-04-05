@@ -16,14 +16,13 @@ public class GameInstance : MonoBehaviour
         {
             if (_instance == null)
                 _instance = new GameObject("GameInstanceManager").AddComponent<GameInstance>();
-            
+            Debug.Log("GameInstance Got");
             return _instance;
         }
     }
 
     [SerializeField]
-    public string
-        activeLevel;
+    public string activeLevel;
 
     /// <summary>
     /// The name of a spawn point in the next scene, to which the player and party will be moved on scene load
@@ -38,8 +37,7 @@ public class GameInstance : MonoBehaviour
     /// The player characters.
     /// </summary>
     [SerializeField]
-    private List<GameObject>
-        PlayerCharacters;
+    private List<GameObject> PlayerCharacters;
 
 
     public void StartState()
@@ -50,6 +48,10 @@ public class GameInstance : MonoBehaviour
 
         DontDestroyOnLoad(DK);
         PlayerCharacters.Add(DK);
+
+
+
+
 
         NextSpawn = "spawnPoint";
 
