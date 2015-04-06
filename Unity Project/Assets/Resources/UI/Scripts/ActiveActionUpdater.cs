@@ -22,25 +22,25 @@ public class ActiveActionUpdater : MonoBehaviour {
 	public static void ChangeActionCostValue(GameObject action, int cost)
 	{
 		var settings = action.GetComponent<ActionButtonActive>();
-		settings.LabelCost = cost.ToString();
+		settings.LabelLeft = cost.ToString();
 	}
 
 	public static void ChangeActionCostColor(GameObject action, Color color)
 	{
 		var settings = action.GetComponent<ActionButtonActive>();
-		settings.LabelCostColor = color;
+		settings.LabelLeftColor = color;
 	}
 
 	public static void ChangeActionGainValue(GameObject action, int cost)
 	{
 		var settings = action.GetComponent<ActionButtonActive>();
-		settings.LabelCost = cost.ToString();
+		settings.LabelRight = cost.ToString();
 	}
 
 	public static void ChangeActionGainColor(GameObject action, Color color)
 	{
 		var settings = action.GetComponent<ActionButtonActive>();
-		settings.LabelCostColor = color;
+		settings.LabelRightColor = color;
 	}
 
 }

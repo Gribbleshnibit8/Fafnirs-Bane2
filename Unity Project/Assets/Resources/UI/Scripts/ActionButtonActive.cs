@@ -6,8 +6,8 @@ public class ActionButtonActive : MonoBehaviour
 {
 
 	private UILabel _labelName;
-	private UILabel _labelCost;
-	private UILabel _labelGain;
+	private UILabel _labelLeft;
+	private UILabel _labelRight;
 	private UISprite _sprite;
 
 
@@ -15,28 +15,28 @@ public class ActionButtonActive : MonoBehaviour
 	void Awake()
 	{
 		_labelName = GetComponentsInChildren<UILabel>()[0];
-		_labelCost = GetComponentsInChildren<UILabel>()[1];
-		_labelGain = GetComponentsInChildren<UILabel>()[2];
+		_labelLeft = GetComponentsInChildren<UILabel>()[1];
+		_labelRight = GetComponentsInChildren<UILabel>()[2];
 
 		_sprite = GetComponentInChildren<UISprite>();
 
 		Sprite = "";
 		LabelName = "";
-		LabelCost = "";
-		LabelGain = "";
+		LabelLeft = "";
+		LabelRight = "";
 	}
 
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
-		
+
 	}
-	
+
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
-	
+
 	}
 
 	#region Accessors
@@ -64,50 +64,50 @@ public class ActionButtonActive : MonoBehaviour
 		set { _labelName.color = value; }
 	}
 
-	public string LabelCost
+	public string LabelLeft
 	{
-		get { return _labelCost.text; }
+		get { return _labelLeft.text; }
 		set
 		{
 			if (String.IsNullOrEmpty(value))
 			{
-				_labelCost.text = "";
-				_labelCost.enabled = false;
+				_labelLeft.text = "";
+				_labelLeft.enabled = false;
 			}
 			else
 			{
-				_labelCost.text = value;
-				_labelCost.enabled = true;
+				_labelLeft.text = value;
+				_labelLeft.enabled = true;
 			}
 		}
 	}
-	public Color LabelCostColor
+	public Color LabelLeftColor
 	{
-		get { return _labelCost.color; }
-		set { _labelCost.color = value; }
+		get { return _labelLeft.color; }
+		set { _labelLeft.color = value; }
 	}
 
-	public string LabelGain
+	public string LabelRight
 	{
-		get { return _labelGain.text; }
+		get { return _labelRight.text; }
 		set
 		{
 			if (String.IsNullOrEmpty(value))
 			{
-				_labelGain.text = "";
-				_labelGain.enabled = false;
+				_labelRight.text = "";
+				_labelRight.enabled = false;
 			}
 			else
 			{
-				_labelGain.text = value;
-				_labelGain.enabled = true;
+				_labelRight.text = value;
+				_labelRight.enabled = true;
 			}
 		}
 	}
-	public Color LabelGainColor
+	public Color LabelRightColor
 	{
-		get { return _labelGain.color; }
-		set { _labelGain.color = value; }
+		get { return _labelRight.color; }
+		set { _labelRight.color = value; }
 	}
 
 	public string Sprite

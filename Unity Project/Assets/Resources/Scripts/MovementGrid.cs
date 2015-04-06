@@ -16,7 +16,7 @@ public class MovementGrid : MonoBehaviour {
 
 	void Awake()
 	{
-		CreateGrid(gameObject.transform.position);
+		//CreateGrid(gameObject.transform.position);
 	}
 	
 	// Update is called once per frame
@@ -33,7 +33,7 @@ public class MovementGrid : MonoBehaviour {
 					Debug.Log(hitInfo.transform.gameObject.name);
 					// Here you can check hitInfo to see which collider has been hit, and act appropriately.
 					if (hitInfo.transform.gameObject.GetComponent<MovementGridSquare>())
-						BattleSceneManager.MoveTo(hitInfo.transform);
+						BattleSceneManager.AddMovePoint(hitInfo.transform);
 				}
 			}
 		}
@@ -49,7 +49,7 @@ public class MovementGrid : MonoBehaviour {
 				Debug.Log(hitInfo.transform.gameObject.name);
 				// Here you can check hitInfo to see which collider has been hit, and act appropriately.
 				if (hitInfo.transform.gameObject.GetComponent<MovementGridSquare>())
-					BattleSceneManager.MoveTo(hitInfo.transform);
+					BattleSceneManager.AddMovePoint(hitInfo.transform);
 			}
 		}
 	}
@@ -96,6 +96,7 @@ public class MovementGrid : MonoBehaviour {
 	{ 
 		Debug.Log("Creating grid at center: " + center);
 		DrawGrid(center, height, width);
+		BattleSceneManager.ZoomCameraToScale(height+0.5f);
 	}
 
 	public void CreateGrid(Vector3 center)

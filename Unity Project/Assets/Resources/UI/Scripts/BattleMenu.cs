@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /* Battle Menu
@@ -12,11 +13,13 @@ public class BattleMenu : MonoBehaviour
 {
 	public GameObject ActionQueue;
 
-	private List<GameObject> ActionList = new List<GameObject>();
+	private List<GameObject> ActionQueueList = new List<GameObject>();
 
 	public  VitalBarBasic HealthBar;
 
 	public VitalBarBasic EnergyBar;
+
+	public List<UIAnchor> Anchors;
 
 
 	#region Unity Functions
@@ -25,6 +28,7 @@ public class BattleMenu : MonoBehaviour
 		{
 			Debug.Log("Action Handler Start");
 			ActionQueue = GameObject.Find("Action Queue");
+			Anchors = GetComponentsInChildren<UIAnchor>().ToList();
 
 			foreach (var child in GetComponentsInChildren<VitalBarBasic>())
 			{
@@ -62,19 +66,19 @@ public class BattleMenu : MonoBehaviour
 	private GameObject AddActionToQueue()
 	{
 		GameObject action = null;
-		if (ActionList.Count < 5)
+		if (ActionQueueList.Count < 5)
 		{
 			action = Instantiate(Resources.Load("UI/Elements/Action Button Active", typeof(GameObject))) as GameObject;
 			action.transform.parent = ActionQueue.transform.GetChild(0);
 			action.transform.position = new Vector3(0, 0, 0);
 			action.transform.localScale = new Vector3(1, 1, 1);
-			ActionList.Add(action);
+			ActionQueueList.Add(action);
 			ActionQueue.GetComponentInChildren<UIGrid>().Reposition();
 		}
 
 		// Temporary code that subtracts 1 energy point per each button added
 		// Update the energy display as a percentage of max value
-		var f = 1.0f - ((float)ActionList.Count/(float)EnergyBar.MaxValue);
+		var f = 1.0f - ((float)ActionQueueList.Count/(float)EnergyBar.MaxValue);
 		EnergyBar.UpdateDisplay(f);
 
 		return action;
@@ -90,7 +94,6 @@ public class BattleMenu : MonoBehaviour
 		if (action == null) return;
 
 		ActiveActionUpdater.ChangeActionName(action, "Attack");
-
 	}
 
 	public void ActionSpell()
@@ -112,7 +115,13 @@ public class BattleMenu : MonoBehaviour
 
 		ActiveActionUpdater.ChangeActionName(action, "Move");
 
+		// TODO: Take into account character's movement range here
 		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
+
+		foreach (var uiAnchor in Anchors)
+		{
+			uiAnchor.GetComponentInChildren<UIPanel>().animation.Rewind();
+		}
 	}
 
 	public void ActionInventory()
