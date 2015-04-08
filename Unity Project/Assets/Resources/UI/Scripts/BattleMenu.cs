@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,15 +12,28 @@ using UnityEngine;
 
 public class BattleMenu : MonoBehaviour
 {
-	public GameObject ActionQueue;
 
-	private List<GameObject> ActionQueueList = new List<GameObject>();
+	public enum ActionType
+	{
+		Move,
+		Attack,
+		Inventory,
+		Skillz,
+		Menu,
+		None
+	}
 
-	public  VitalBarBasic HealthBar;
+	public static GameObject ActionQueue;
 
-	public VitalBarBasic EnergyBar;
+	private static List<GameObject> ActionQueueList = new List<GameObject>();
 
-	public List<UIAnchor> Anchors;
+	public static VitalBarBasic HealthBar;
+
+	public static VitalBarBasic EnergyBar;
+
+	public static List<UIAnchor> Anchors;
+
+	public static ActionType CurrentAction = ActionType.None;
 
 
 	#region Unity Functions
@@ -63,7 +77,7 @@ public class BattleMenu : MonoBehaviour
 	/// If the queue is full, it returns a null value.
 	/// </summary>
 	/// <returns>New action</returns>
-	private GameObject AddActionToQueue()
+	private static GameObject AddActionToQueue()
 	{
 		GameObject action = null;
 		if (ActionQueueList.Count < 5)
@@ -87,18 +101,20 @@ public class BattleMenu : MonoBehaviour
 
 	#region Action Button Events
 
-	public void ActionAttack()
+	public static void ActionAttack()
 	{
 		Debug.Log("Action Attack Clicked");
+		CurrentAction = ActionType.Attack;
 		var action = AddActionToQueue();
 		if (action == null) return;
 
 		ActiveActionUpdater.ChangeActionName(action, "Attack");
 	}
 
-	public void ActionSpell()
+	public static void ActionSpell()
 	{
 		Debug.Log("Action Spell Clicked");
+		CurrentAction = ActionType.Skillz;
 		var action = AddActionToQueue();
 		if (action == null) return;
 
@@ -110,23 +126,25 @@ public class BattleMenu : MonoBehaviour
 	public void ActionMove()
 	{
 		Debug.Log("Action Move Clicked");
+		CurrentAction = ActionType.Move;
+
+		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
+
 		var action = AddActionToQueue();
 		if (action == null) return;
 
 		ActiveActionUpdater.ChangeActionName(action, "Move");
 
 		// TODO: Take into account character's movement range here
-		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
+		
 
-		foreach (var uiAnchor in Anchors)
-		{
-			uiAnchor.GetComponentInChildren<UIPanel>().animation.Rewind();
-		}
+		
 	}
 
-	public void ActionInventory()
+	public static void ActionInventory()
 	{
 		Debug.Log("Action Inventory Clicked");
+		CurrentAction = ActionType.Inventory;
 		var action = AddActionToQueue();
 		if (action == null) return;
 
@@ -135,9 +153,10 @@ public class BattleMenu : MonoBehaviour
 		ActiveActionUpdater.ChangeActionCostColor(action, new Color(188, 0, 0));
 	}
 
-	public void ActionOther()
+	public static void ActionOther()
 	{
 		Debug.Log("Action Menu Clicked");
+		CurrentAction = ActionType.Menu;
 		var action = AddActionToQueue();
 		if (action == null) return;
 
@@ -145,4 +164,66 @@ public class BattleMenu : MonoBehaviour
 	}
 	#endregion
 
+
+	private static void StartAction()
+	{
+		foreach (var uiAnchor in Anchors)
+		{
+			uiAnchor.GetComponentInChildren<UIPanel>().animation.Rewind();
+		}
+	}
+
+
+	static IEnumerator WaitForKeyDown(KeyCode keyCode)
+	{
+		while (!Input.GetKeyDown(keyCode))
+			yield return null;
+	}
+
+
+
+
+
+
+	public static void Confirm()
+	{
+		switch (CurrentAction)
+		{
+			case ActionType.Attack:
+				break;
+			case ActionType.Move:
+				break;
+			case ActionType.Inventory:
+				break;
+			case ActionType.Skillz:
+				break;
+			case ActionType.Menu:
+				break;
+			case ActionType.None:
+				break;
+			default:
+				break;
+		}
+	}
+
+	public static void Cancel()
+	{
+		switch (CurrentAction)
+		{
+			case ActionType.Attack:
+				break;
+			case ActionType.Move:
+				break;
+			case ActionType.Inventory:
+				break;
+			case ActionType.Skillz:
+				break;
+			case ActionType.Menu:
+				break;
+			case ActionType.None:
+				break;
+			default:
+				break;
+		}
+	}
 }

@@ -15,6 +15,7 @@ public class RootMenuManager : MonoBehaviour
 		OverworldMenu,
 		BattleMenu,
 		StoryMenu,
+		ConfirmMenu,
 		None
 	}
 
@@ -22,6 +23,7 @@ public class RootMenuManager : MonoBehaviour
 	private static GameObject _overworldMenu;
 	private static GameObject _battleMenu;
 	private static GameObject _storyMenu;
+	private static GameObject _confirmMenu;
 	private static GameObject _infoMenu;
 
 
@@ -32,6 +34,12 @@ public class RootMenuManager : MonoBehaviour
 		_battleMenu = transform.Find("BattleMenu").gameObject;
 		_storyMenu = transform.Find("StoryMenu").gameObject;
 		_infoMenu = transform.Find("InfoMenu").gameObject;
+		_confirmMenu = transform.Find("ConfirmMenu").gameObject;
+	}
+
+	void Update()
+	{
+		//SetActiveMenu();
 	}
 
 
@@ -45,6 +53,8 @@ public class RootMenuManager : MonoBehaviour
 			return ActiveMenu.BattleMenu;
 		if (_storyMenu.activeSelf)
 			return ActiveMenu.StoryMenu;
+		if (_confirmMenu.activeSelf)
+			return ActiveMenu.ConfirmMenu;
 
 		return ActiveMenu.None;
 	}

@@ -6,6 +6,11 @@ public class BattleSceneManager : MonoBehaviour
 
 	public static MovementGrid Grid;
 
+	// TODO: Change type of class to character sheet, or gameobject of character
+	// NOTE: Parent gameobject can be gotten from any component
+	/// <summary>
+	/// The currently active character
+	/// </summary>
 	public static AIScript Character;
 
 	public static List<Transform> MovePoint;
