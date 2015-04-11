@@ -26,19 +26,6 @@ public class ActionButtonActive : MonoBehaviour
 		LabelRight = "";
 	}
 
-
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
 	#region Accessors
 
 	public string LabelName
@@ -127,7 +114,6 @@ public class ActionButtonActive : MonoBehaviour
 			}
 		}
 	}
-
 
 	#endregion Accessors
 }

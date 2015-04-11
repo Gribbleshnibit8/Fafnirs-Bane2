@@ -23,17 +23,17 @@ public class BattleMenu : MonoBehaviour
 		None
 	}
 
-	public static GameObject ActionQueue;
+	public static GameObject ActionQueue { get; private set; }
 
 	private static List<GameObject> ActionQueueList = new List<GameObject>();
 
-	public static VitalBarBasic HealthBar;
+	public static VitalBarBasic HealthBar { get; private set; }
 
-	public static VitalBarBasic EnergyBar;
+	public static VitalBarBasic EnergyBar { get; private set; }
 
-	public static List<UIAnchor> Anchors;
+	public static List<UIAnchor> Anchors { get; private set; }
 
-	public static ActionType CurrentAction = ActionType.None;
+	public static ActionType CurrentAction { get; private set; }
 
 
 	#region Unity Functions
@@ -41,6 +41,8 @@ public class BattleMenu : MonoBehaviour
 		void Awake()
 		{
 			Debug.Log("Action Handler Start");
+			CurrentAction = ActionType.None;
+
 			ActionQueue = GameObject.Find("Action Queue");
 			Anchors = GetComponentsInChildren<UIAnchor>().ToList();
 
@@ -130,15 +132,17 @@ public class BattleMenu : MonoBehaviour
 
 		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
 
-		var action = AddActionToQueue();
-		if (action == null) return;
+		StartCoroutine("WaitForConfirm");
 
-		ActiveActionUpdater.ChangeActionName(action, "Move");
+		//var action = AddActionToQueue();
+		//if (action == null) return;
+
+		//ActiveActionUpdater.ChangeActionName(action, "Move");
 
 		// TODO: Take into account character's movement range here
-		
 
-		
+
+
 	}
 
 	public static void ActionInventory()
@@ -164,25 +168,19 @@ public class BattleMenu : MonoBehaviour
 	}
 	#endregion
 
-
-	private static void StartAction()
+	
+	
+	IEnumerator WaitForConfirm()
 	{
-		foreach (var uiAnchor in Anchors)
+		int i = ConfirmMenu.ConfirmMenuState;
+		while (i == 0)
 		{
-			uiAnchor.GetComponentInChildren<UIPanel>().animation.Rewind();
-		}
-	}
-
-
-	static IEnumerator WaitForKeyDown(KeyCode keyCode)
-	{
-		while (!Input.GetKeyDown(keyCode))
+			//Debug.Log("WaitForConfirm Running");
 			yield return null;
+		}
+		if (i == 1) Confirm();
+		else Cancel();
 	}
-
-
-
-
 
 
 	public static void Confirm()
@@ -192,6 +190,7 @@ public class BattleMenu : MonoBehaviour
 			case ActionType.Attack:
 				break;
 			case ActionType.Move:
+				Debug.Log("Move action was confirmed to location " + MovementGrid.MovePoint);
 				break;
 			case ActionType.Inventory:
 				break;

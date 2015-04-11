@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using X_UniTMX;
 
 public class MovementGrid : MonoBehaviour {
 
@@ -10,6 +8,21 @@ public class MovementGrid : MonoBehaviour {
 	{
 		Movement,
 		Range
+	}
+
+	private static Transform _movePoint = null;
+	/// <summary>
+	/// 
+	/// </summary>
+	public static Transform MovePoint
+	{
+		get
+		{
+			if (_movePoint == null) return null;
+			Transform t = _movePoint;
+			_movePoint = null;
+			return t;
+		}
 	}
 	
 	List<GameObject> _grid = null;
@@ -20,12 +33,12 @@ public class MovementGrid : MonoBehaviour {
 	{
 		input = GetComponent<InputHandler>();
 		input.ComponentType = "MovementGridSquare";
-		input.FunctionName = "AddMovePoint";
+		input.FunctionName = "SetMovePoint";
 	}
 
-	public void AddMovePoint(Transform t)
+	public void SetMovePoint(Transform t)
 	{
-		BattleSceneManager.AddMovePoint(t);
+		_movePoint = t;
 	}
 	
 	

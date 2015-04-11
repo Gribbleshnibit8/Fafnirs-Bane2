@@ -7,12 +7,7 @@ public class ActionButtonMove : ActionButtonActive
 
 	public int MoveDistance { get; set; }
 
-	void Awake()
-	{
-
-	}
-
-	public void CreateMoveButton(int cost, int distance, string sprite)
+	public void InitializeButton(int cost, int distance, string sprite)
 	{
 		MoveCost = cost;
 		LabelLeft = cost.ToString();
