@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 /* Root Menu Manager
  * 
@@ -11,93 +13,117 @@ public class RootMenuManager : MonoBehaviour
 
 	public enum ActiveMenu
 	{
-		TitleMenu,
-		OverworldMenu,
-		BattleMenu,
-		StoryMenu,
-		ConfirmMenu,
-		None
+		TitleMenu = 0,
+		OverworldMenu = 1,
+		BattleMenu = 2,
+		StoryMenu = 3,
+		ConfirmMenu = 4,
+		None = 5
 	}
 
-	private static GameObject _titleMenu;
-	private static GameObject _overworldMenu;
-	private static GameObject _battleMenu;
-	private static GameObject _storyMenu;
-	private static GameObject _confirmMenu;
-	private static GameObject _infoMenu;
+	private static RootMenuManager _rootMenu;
+	public static RootMenuManager Instance
+	{
+		get { return _rootMenu ?? (_rootMenu = new RootMenuManager()); }
+	}
+
+	public TitleMenu TitleMenu;
+	public OverworldMenu OverworldMenu;
+	public BattleMenu BattleMenu;
+	public StoryMenu StoryMenu;
+	public ConfirmMenu ConfirmMenu;
+	public InfoMessage InfoMenu;
+
+	private readonly List<Component> _menusList = new List<Component>();
+	private readonly List<Component> _blockingList = new List<Component>();
 
 
 	void Awake()
 	{
-		_titleMenu = transform.Find("TitleMenu").gameObject;
-		_overworldMenu = transform.Find("OverworldMenu").gameObject;
-		_battleMenu = transform.Find("BattleMenu").gameObject;
-		_storyMenu = transform.Find("StoryMenu").gameObject;
-		_infoMenu = transform.Find("InfoMenu").gameObject;
-		_confirmMenu = transform.Find("ConfirmMenu").gameObject;
+		_rootMenu = this;
+
+		// Add menus to a list for easier use
+		_menusList.Add(TitleMenu);
+		_menusList.Add(OverworldMenu);
+		_menusList.Add(BattleMenu);
+		_menusList.Add(StoryMenu);
+		_menusList.Add(ConfirmMenu);
+
+		_blockingList.Add(ConfirmMenu);
+
+		CorrectActiveMenu();
 	}
 
-	void Update()
+	/// <summary>
+	/// Returns the ActiveMenu enum of the currently active menu
+	/// </summary>
+	/// <returns>Active menu</returns>
+	public ActiveMenu GetActiveMenu()
 	{
-		//SetActiveMenu();
-	}
-
-
-	public static ActiveMenu GetActiveMenu()
-	{
-		if (_titleMenu.activeSelf)
-			return ActiveMenu.TitleMenu;
-		if (_overworldMenu.activeSelf)
-			return ActiveMenu.OverworldMenu;
-		if (_battleMenu.activeSelf)
-			return ActiveMenu.BattleMenu;
-		if (_storyMenu.activeSelf)
-			return ActiveMenu.StoryMenu;
-		if (_confirmMenu.activeSelf)
-			return ActiveMenu.ConfirmMenu;
+		foreach (var m in _menusList)
+			if (m.gameObject.activeSelf)
+				return (ActiveMenu) _menusList.IndexOf(m);
 
 		return ActiveMenu.None;
 	}
 
-	public static void SetActiveMenu(ActiveMenu menu)
+	/// <summary>
+	/// Sets the specified menu as active, optionally you can leave the other active menu or menues enabled
+	/// </summary>
+	/// <param name="menu">The ActiveMenu enum value to set as active</param>
+	/// <param name="disableAll">Optional: Disable other menus, false to leave them active</param>
+	public void SetActiveMenu(ActiveMenu menu, bool disableAll = true)
 	{
-		_titleMenu.SetActive(false);
-		_overworldMenu.SetActive(false);
-		_battleMenu.SetActive(false);
-		_storyMenu.SetActive(false);
 
-		switch (menu)
-		{
-			case ActiveMenu.TitleMenu:
-				_titleMenu.SetActive(true);
-				break;
-			case ActiveMenu.OverworldMenu:
-				_overworldMenu.SetActive(true);
-				break;
-			case ActiveMenu.BattleMenu:
-				_battleMenu.SetActive(true);
-				break;
-			case ActiveMenu.StoryMenu:
-				_storyMenu.SetActive(true);
-				break;
-		}
+		if (disableAll)
+			foreach (var m in _menusList)
+				m.gameObject.SetActive(false);
+
+		_menusList[(int)menu].gameObject.SetActive(true);
 	}
 
-	public static Component GetActiveMenuComponent(ActiveMenu menu)
+
+	/// <summary>
+	/// Gives the script component of the specified menu
+	/// </summary>
+	/// <param name="menu">ActiveMenu enum value</param>
+	/// <returns>Script component of active menu</returns>
+	public Component GetActiveMenuComponent(ActiveMenu menu)
 	{
-		switch (menu)
-		{
-			case ActiveMenu.TitleMenu:
-				return _titleMenu.GetComponent<TitleMenu>();
-			case ActiveMenu.OverworldMenu:
-				return _overworldMenu.GetComponent<OverworldMenu>();
-			case ActiveMenu.BattleMenu:
-				return _battleMenu.GetComponent<BattleMenu>();
-			case ActiveMenu.StoryMenu:
-				return _storyMenu.GetComponent<StoryMenu>();
-			default:
-				return null;
-		}
+		return _menusList[(int) menu];
 	}
 
+	/// <summary>
+	/// Returns if a blocking menu is active
+	/// </summary>
+	/// <returns>A menu is blocking</returns>
+	public bool GetIsBlocking()
+	{
+		foreach (var m in _blockingList)
+			if (m.gameObject.activeSelf)
+				return true;
+
+		return false;
+	}
+
+	/// <summary>
+	/// Corrects the active menu to the current scene
+	/// </summary>
+	/// <returns></returns>
+	private void CorrectActiveMenu()
+	{
+		// Count all menus that are currently active
+		var count = _menusList.Count(m => m.gameObject.activeSelf);
+
+		if (count > 1)
+		{
+			foreach (var m in _menusList)
+				m.gameObject.SetActive(false);
+
+			if (Application.loadedLevelName.ToLower().Equals("overworld"))
+				OverworldMenu.gameObject.SetActive(true);
+			else
+				BattleMenu.gameObject.SetActive(true);
+		}
+	}
 }

@@ -110,7 +110,6 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue();
 		if (action == null) return;
 
-		ActiveActionUpdater.ChangeActionName(action, "Attack");
 	}
 
 	public static void ActionSpell()
@@ -120,9 +119,6 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue();
 		if (action == null) return;
 
-		ActiveActionUpdater.ChangeActionName(action, "Spell");
-		ActiveActionUpdater.ChangeActionCostValue(action, 1);
-		ActiveActionUpdater.ChangeActionCostColor(action, new Color(0, 130, 188));
 	}
 
 	public void ActionMove()
@@ -131,8 +127,7 @@ public class BattleMenu : MonoBehaviour
 		CurrentAction = ActionType.Move;
 
 		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
-
-		StartCoroutine("WaitForConfirm");
+		BattleSceneManager.Grid.CallingMenu = gameObject;
 
 		//var action = AddActionToQueue();
 		//if (action == null) return;
@@ -152,9 +147,6 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue();
 		if (action == null) return;
 
-		ActiveActionUpdater.ChangeActionName(action, "Inventory");
-		ActiveActionUpdater.ChangeActionCostValue(action, 1);
-		ActiveActionUpdater.ChangeActionCostColor(action, new Color(188, 0, 0));
 	}
 
 	public static void ActionOther()
@@ -164,33 +156,30 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue();
 		if (action == null) return;
 
-		//ActiveActionUpdater.ChangeActionName(action, "Other");
 	}
 	#endregion
 
-	
-	
-	IEnumerator WaitForConfirm()
-	{
-		int i = ConfirmMenu.ConfirmMenuState;
-		while (i == 0)
-		{
-			//Debug.Log("WaitForConfirm Running");
-			yield return null;
-		}
-		if (i == 1) Confirm();
-		else Cancel();
-	}
+
+
+	#region Action Delegates
+
+
+
+	#endregion Action Delegates
+
+
+
 
 
 	public static void Confirm()
 	{
+		Debug.Log("Action was confirmed ");
 		switch (CurrentAction)
 		{
 			case ActionType.Attack:
 				break;
 			case ActionType.Move:
-				Debug.Log("Move action was confirmed to location " + MovementGrid.MovePoint);
+				Debug.Log("Move action was confirmed to location " + MovementGrid.Instance.MovePoint);
 				break;
 			case ActionType.Inventory:
 				break;

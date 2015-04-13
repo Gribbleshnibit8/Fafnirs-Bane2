@@ -4,36 +4,37 @@ using System.Collections;
 public class ConfirmMenu : MonoBehaviour
 {
 
-	private static int _confirmState = 0;
+	public GameObject CallingMenu;
+	public string CallbackFunction;
 
-	/// <summary>
-	/// Returns 1 if confirm button pressed, returns -1 if cancel button pressed, returns 0 otherwise.
-	/// </summary>
-	public static int ConfirmMenuState
+
+	private static ConfirmMenu _confirmMenu;
+	public static ConfirmMenu Instance
 	{
-		get
-		{
-			switch (_confirmState)
-			{
-				case 1:
-					_confirmState = 0;
-					return 1;
-				case -1:
-					_confirmState = 0;
-					return -1;
-				default:
-					return 0;
-			}
-		}
+		get { return _confirmMenu ?? (_confirmMenu = new ConfirmMenu()); }
+	}
+
+	void Awake()
+	{
+		_confirmMenu = this;
+	}
+
+	void FixedUpdate()
+	{
+		//Debug.LogWarning("Confirm Menu: confirm state value is: " + _confirmState);
 	}
 
 	public void ConfirmAction()
 	{
-		_confirmState = 1;
+		Debug.Log("Confirm menu: Confirm clicked");
+
+		CallingMenu.SendMessage(CallbackFunction, 1);
+		gameObject.SetActive(false);
 	}
 
 	public void CancelAction()
 	{
-		_confirmState = -1;
+		CallingMenu.SendMessage(CallbackFunction, 1);
+		gameObject.SetActive(false);
 	}
 }

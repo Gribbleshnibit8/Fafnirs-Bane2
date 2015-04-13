@@ -12,6 +12,8 @@ public class InputHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+		if (RootMenuManager.Instance.GetIsBlocking())
+			return;
 		// Handles touching of the movement grid.
 		for (var i = 0; i < Input.touchCount; ++i)
 		{
