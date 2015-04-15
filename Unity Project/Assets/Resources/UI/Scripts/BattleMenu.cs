@@ -10,18 +10,20 @@ using UnityEngine;
  * then passes them off for actual execution.
  */
 
+public enum ActionType
+{
+	Move,
+	Attack,
+	Inventory,
+	Skillz,
+	Menu,
+	None
+}
+
 public class BattleMenu : MonoBehaviour
 {
 
-	public enum ActionType
-	{
-		Move,
-		Attack,
-		Inventory,
-		Skillz,
-		Menu,
-		None
-	}
+	
 
 	public static GameObject ActionQueue { get; private set; }
 
@@ -68,7 +70,7 @@ public class BattleMenu : MonoBehaviour
 		// Update is called once per frame
 		void Update () 
 		{
-			ActionQueue.GetComponentInChildren<UIGrid>().Reposition();
+			//ActionQueue.GetComponentInChildren<UIGrid>().Reposition();
 		}
 
 	#endregion
@@ -79,12 +81,12 @@ public class BattleMenu : MonoBehaviour
 	/// If the queue is full, it returns a null value.
 	/// </summary>
 	/// <returns>New action</returns>
-	private static GameObject AddActionToQueue()
+	private static GameObject AddActionToQueue(string bName)
 	{
 		GameObject action = null;
 		if (ActionQueueList.Count < 5)
 		{
-			action = Instantiate(Resources.Load("UI/Elements/Action Button Active", typeof(GameObject))) as GameObject;
+			action = Instantiate(Resources.Load("UI/Elements/Action Button " + bName, typeof(GameObject))) as GameObject;
 			action.transform.parent = ActionQueue.transform.GetChild(0);
 			action.transform.position = new Vector3(0, 0, 0);
 			action.transform.localScale = new Vector3(1, 1, 1);
@@ -107,7 +109,7 @@ public class BattleMenu : MonoBehaviour
 	{
 		Debug.Log("Action Attack Clicked");
 		CurrentAction = ActionType.Attack;
-		var action = AddActionToQueue();
+		var action = AddActionToQueue("Attack");
 		if (action == null) return;
 
 	}
@@ -116,7 +118,7 @@ public class BattleMenu : MonoBehaviour
 	{
 		Debug.Log("Action Spell Clicked");
 		CurrentAction = ActionType.Skillz;
-		var action = AddActionToQueue();
+		var action = AddActionToQueue("Skillz");
 		if (action == null) return;
 
 	}
@@ -127,24 +129,15 @@ public class BattleMenu : MonoBehaviour
 		CurrentAction = ActionType.Move;
 
 		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
-		BattleSceneManager.Grid.CallingMenu = gameObject;
 
-		//var action = AddActionToQueue();
-		//if (action == null) return;
-
-		//ActiveActionUpdater.ChangeActionName(action, "Move");
-
-		// TODO: Take into account character's movement range here
-
-
-
+		BattleSceneManager.Grid.Callback = new ActionMessage(gameObject, "ConfirmMove");
 	}
 
 	public static void ActionInventory()
 	{
 		Debug.Log("Action Inventory Clicked");
 		CurrentAction = ActionType.Inventory;
-		var action = AddActionToQueue();
+		var action = AddActionToQueue("Inventory");
 		if (action == null) return;
 
 	}
@@ -153,7 +146,7 @@ public class BattleMenu : MonoBehaviour
 	{
 		Debug.Log("Action Menu Clicked");
 		CurrentAction = ActionType.Menu;
-		var action = AddActionToQueue();
+		var action = AddActionToQueue("Other");
 		if (action == null) return;
 
 	}
@@ -161,11 +154,25 @@ public class BattleMenu : MonoBehaviour
 
 
 
-	#region Action Delegates
+	#region Action Finish
 
+	public void ConfirmMove(int[] value)
+	{
+		switch (value[0])
+		{
+			case 1:
+				var action = AddActionToQueue("Move");
+				if (action == null) return;
+				
+				
 
+				break;
+			case -1:
+				break;
+		}
+	}
 
-	#endregion Action Delegates
+	#endregion Action Finish
 
 
 

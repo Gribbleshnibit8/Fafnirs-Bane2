@@ -6,7 +6,7 @@ public class MovementGrid : GridGenerator
 
 	public Transform MovePoint;
 
-	public GameObject CallingMenu;
+	public ActionMessage Callback;
 
 	private static MovementGrid _movementGrid;
 	public static MovementGrid Instance
@@ -31,8 +31,7 @@ public class MovementGrid : GridGenerator
 
 		var confirm = ((ConfirmMenu) RootMenuManager.Instance.GetActiveMenuComponent(RootMenuManager.ActiveMenu.ConfirmMenu));
 
-		confirm.CallingMenu = gameObject;
-		confirm.CallbackFunction = "Confirm";
+		confirm.Callback = Callback;
 
 	}
 
@@ -44,10 +43,4 @@ public class MovementGrid : GridGenerator
 		base.ClearGrid();
 		MovePoint = null;
 	}
-
-	public void Confirm(int confirmation)
-	{
-		Debug.Log("IT WORKED!!");
-	}
-
 }
