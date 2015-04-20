@@ -105,6 +105,10 @@ public class BattleMenu : MonoBehaviour
 
 	#region Action Button Events
 
+	/// <summary>
+	/// Creates an attack range grid based on the current character's stats.
+	/// If last command is a move, then the attack will take place at the NEW move position, otherwise current position.
+	/// </summary>
 	public static void ActionAttack()
 	{
 		Debug.Log("Action Attack Clicked");
@@ -114,6 +118,9 @@ public class BattleMenu : MonoBehaviour
 
 	}
 
+	/// <summary>
+	/// Opens the skillz menu, allowing the active character to select from their skillz
+	/// </summary>
 	public static void ActionSpell()
 	{
 		Debug.Log("Action Spell Clicked");
@@ -123,6 +130,9 @@ public class BattleMenu : MonoBehaviour
 
 	}
 
+	/// <summary>
+	/// Creates a new movement grid based on active character stats
+	/// </summary>
 	public void ActionMove()
 	{
 		Debug.Log("Action Move Clicked");
@@ -133,7 +143,10 @@ public class BattleMenu : MonoBehaviour
 		BattleSceneManager.Grid.Callback = new ActionMessage(gameObject, "ConfirmMove");
 	}
 
-	public static void ActionInventory()
+	/// <summary>
+	/// Shows the inventory for the party, with the focus of the active character
+	/// </summary>
+	public void ActionInventory()
 	{
 		Debug.Log("Action Inventory Clicked");
 		CurrentAction = ActionType.Inventory;
@@ -142,7 +155,8 @@ public class BattleMenu : MonoBehaviour
 
 	}
 
-	public static void ActionOther()
+
+	public void ActionOther()
 	{
 		Debug.Log("Action Menu Clicked");
 		CurrentAction = ActionType.Menu;
@@ -150,8 +164,42 @@ public class BattleMenu : MonoBehaviour
 		if (action == null) return;
 
 	}
+
+	/// <summary>
+	/// Finalizes the action queue and sends it off to the character to execute
+	/// </summary>
+	public void ActionFinalize()
+	{
+		BattleSceneManager.ExecuteQueue();
+	}
+
 	#endregion
 
+
+	#region Attack Button Events
+
+	public void AttackUp()
+	{
+		// TODO: Create action button for queue
+		// TODO: Create new action object and add to list
+	}
+
+	public void AttackDown()
+	{
+		
+	}
+
+	public void AttackLeft()
+	{
+		
+	}
+
+	public void AttackRight()
+	{
+		
+	}
+
+	#endregion Attack Button Events
 
 
 	#region Action Finish
@@ -163,62 +211,19 @@ public class BattleMenu : MonoBehaviour
 			case 1:
 				var action = AddActionToQueue("Move");
 				if (action == null) return;
-				
-				
+
+				var newAction = new CharacterActionMove(ActionType.Move, 1, BattleSceneManager.Grid.MovePoint.position);
+				BattleSceneManager.Grid.ClearGrid();
+
+				BattleSceneManager.CharActionList.Add(newAction);
 
 				break;
 			case -1:
+				// This doesn't really do anything, since we want to ignore a cancel message
 				break;
 		}
 	}
 
 	#endregion Action Finish
 
-
-
-
-
-	public static void Confirm()
-	{
-		Debug.Log("Action was confirmed ");
-		switch (CurrentAction)
-		{
-			case ActionType.Attack:
-				break;
-			case ActionType.Move:
-				Debug.Log("Move action was confirmed to location " + MovementGrid.Instance.MovePoint);
-				break;
-			case ActionType.Inventory:
-				break;
-			case ActionType.Skillz:
-				break;
-			case ActionType.Menu:
-				break;
-			case ActionType.None:
-				break;
-			default:
-				break;
-		}
-	}
-
-	public static void Cancel()
-	{
-		switch (CurrentAction)
-		{
-			case ActionType.Attack:
-				break;
-			case ActionType.Move:
-				break;
-			case ActionType.Inventory:
-				break;
-			case ActionType.Skillz:
-				break;
-			case ActionType.Menu:
-				break;
-			case ActionType.None:
-				break;
-			default:
-				break;
-		}
-	}
 }

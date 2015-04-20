@@ -318,7 +318,7 @@ GameObject:
   - 114: {fileID: 11414444}
   - 114: {fileID: 11414446}
   m_Layer: 5
-  m_Name: Action Button - Item
+  m_Name: Button - Attack Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +390,7 @@ GameObject:
   - 114: {fileID: 11414466}
   - 114: {fileID: 11414464}
   m_Layer: 5
-  m_Name: Action Button - Attack
+  m_Name: Button - Attack Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,7 @@ GameObject:
   - 114: {fileID: 11438028}
   - 114: {fileID: 11438026}
   m_Layer: 5
-  m_Name: Action Button Move
+  m_Name: Button - Attack Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1211,7 +1211,7 @@ GameObject:
   - 114: {fileID: 11451992}
   - 114: {fileID: 11452000}
   m_Layer: 5
-  m_Name: Action Button - Menu
+  m_Name: Button - Attack Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2927,7 +2927,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -577.206543, y: 1.0055865, z: 0}
+  m_LocalPosition: {x: -577.099121, y: 0, z: 0}
   m_LocalScale: {x: .99992007, y: .99992007, z: .99992007}
   m_Children:
   - {fileID: 409682}
@@ -3106,7 +3106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01118469, y: 1.00566697, z: 0}
+  m_LocalPosition: {x: -1.83197021, y: 0, z: 0}
   m_LocalScale: {x: .99992007, y: .99992007, z: .99992007}
   m_Children:
   - {fileID: 414472}
@@ -3533,7 +3533,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.652656555, y: -.352905273, z: 0}
+  m_LocalPosition: {x: -.473442078, y: -.442474365, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 471760}
@@ -4548,7 +4548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -575.848022, y: -360.352905, z: 0}
+  m_LocalPosition: {x: -575.740601, y: -361.35849, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 471642}
@@ -4688,7 +4688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01118469, y: -358.994415, z: 0}
+  m_LocalPosition: {x: -1.83197021, y: -359.083984, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 471794}
@@ -4717,7 +4717,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 576.553894, y: -360.352905, z: 0}
+  m_LocalPosition: {x: 576.625671, y: -361.35849, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 471582}
@@ -5614,11 +5614,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 4107.20654
+    e03: 4107.09912
     e10: 0
     e11: 360
     e12: 0
-    e13: -1.0055865
+    e13: 0
     e20: 0
     e21: 0
     e22: 360
@@ -6276,8 +6276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  functionName: ActionSpell
+  target: {fileID: 114466}
+  functionName: 
   trigger: 0
   includeChildren: 0
 --- !u!114 &11414458
@@ -6322,11 +6322,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 3602.01123
+    e03: 3601.83203
     e10: 0
     e11: 360
     e12: 0
-    e13: -1.00566697
+    e13: 0
     e20: 0
     e21: 0
     e22: 360
@@ -6474,8 +6474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  functionName: ActionAttack
+  target: {fileID: 114466}
+  functionName: 
   trigger: 0
   includeChildren: 0
 --- !u!114 &11414478
@@ -6517,11 +6517,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 4107.20654
+    e03: 4107.09912
     e10: 0
     e11: 360
     e12: 0
-    e13: -1.0055865
+    e13: 0
     e20: 0
     e21: 0
     e22: 360
@@ -6687,8 +6687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  functionName: ActionMove
+  target: {fileID: 114466}
+  functionName: 
   trigger: 0
   includeChildren: 0
 --- !u!114 &11438018
@@ -7113,11 +7113,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 3024.80469
+    e03: 3024.73291
     e10: 0
     e11: 360
     e12: 0
-    e13: -1.00558472
+    e13: 0
     e20: 0
     e21: 0
     e22: 360
@@ -8011,11 +8011,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 4177.20654
+    e03: 4177.09912
     e10: 0
     e11: 360
     e12: 0
-    e13: -1.00558472
+    e13: 0
     e20: 0
     e21: 0
     e22: 360
@@ -8260,7 +8260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 114466}
   functionName: 
   trigger: 0
   includeChildren: 0
@@ -8712,11 +8712,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 3602.01123
+    e03: 3601.83203
     e10: 0
     e11: 360
     e12: 0
-    e13: 288.994415
+    e13: 289.083984
     e20: 0
     e21: 0
     e22: 360
@@ -8830,11 +8830,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 3878.01123
+    e03: 3877.83203
     e10: 0
     e11: 360
     e12: 0
-    e13: 288.994415
+    e13: 289.083984
     e20: 0
     e21: 0
     e22: 360
@@ -10126,11 +10126,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 3602.01123
+    e03: 3601.83203
     e10: 0
     e11: 360
     e12: 0
-    e13: -361.005585
+    e13: -360.916016
     e20: 0
     e21: 0
     e22: 360
@@ -10618,11 +10618,11 @@ MonoBehaviour:
     e00: 360
     e01: 0
     e02: 0
-    e03: 3602.01123
+    e03: 3601.83203
     e10: 0
     e11: 360
     e12: 0
-    e13: 288.994415
+    e13: 289.083984
     e20: 0
     e21: 0
     e22: 360

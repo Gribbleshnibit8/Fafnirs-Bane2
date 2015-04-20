@@ -23,7 +23,10 @@ public class MovementGrid : GridGenerator
 		GridObject = "GridSquare";
 	}
 
-
+	/// <summary>
+	/// Saves the movement point from the grid and shows confirmation dialog
+	/// </summary>
+	/// <param name="t">Location passed from grid</param>
 	public override void SetPoint(Transform t)
 	{
 		MovePoint = t;

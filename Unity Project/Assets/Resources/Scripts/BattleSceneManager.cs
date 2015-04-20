@@ -13,6 +13,8 @@ public class BattleSceneManager : MonoBehaviour
 	/// </summary>
 	public static AIScript Character;
 
+	public static List<CharacterAction> CharActionList;
+
 	public static List<Transform> MovePoint;
 
 	public static Camera MainCamera;
@@ -26,13 +28,16 @@ public class BattleSceneManager : MonoBehaviour
 		MainCamera = GetComponentInChildren<Camera>();
 			CameraOriginalSize = MainCamera.orthographicSize;
 
+		CharActionList = new List<CharacterAction>();
 	}
+
 
 	public static void AddMovePoint(Transform t)
 	{
 		MovePoint.Add(t);
 		Grid.ClearGrid();
 	}
+
 
 	public static void RemoveMovePoint(Transform t)
 	{
@@ -43,10 +48,12 @@ public class BattleSceneManager : MonoBehaviour
 		}
 	}
 
+
 	public static void ClearMovePoint()
 	{
 		MovePoint.Clear();
 	}
+
 
 	public static void ZoomCameraToScale(float size)
 	{
@@ -55,9 +62,16 @@ public class BattleSceneManager : MonoBehaviour
 			MainCamera.orthographicSize = size;
 	}
 
+
 	public static void ResetCameraScale()
 	{
 		MainCamera.orthographicSize = CameraOriginalSize;
+	}
+
+
+	public static void ExecuteQueue()
+	{
+		// TODO: Send queue to character, wait for character to finish action. Switch to next character, bring menus back up
 	}
 
 }
