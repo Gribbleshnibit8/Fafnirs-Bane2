@@ -10,8 +10,8 @@
  ---------------------------------------------------------------------------*/
 public class healer1 : hero
 {
-  public healer1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience) 
-  : base(20, 20, 7, 7, 3, 8, 4, 0, 0, 1, 1)
+  public healer1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range) 
+  : base(20, 20, 7, 7, 3, 8, 4, 0, 0, 1, 1, 1)
 	{
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);
@@ -33,15 +33,15 @@ public class healer1 : hero
   //this.setAttack(this.equipped[0].getDMG()) and this.setDefense(this.equipped[1].getArmorPoints());
    public void levelUP()
   {
-    this.setMaxHealth(this.getMaxHealth() + (3 * this.getLevel()));
-    this.setHealth(this.getMaxHealth() - this.getHealth());
-    this.setMaxEnergy(this.getMaxEnergy() + 1);
-    this.setBaseAttack(this.getBaseAttack() + (2 * this.getLevel()));
-	this.setAttack (1);
-    this.setBaseDefense(this.getBaseDefense() + (2 * this.getLevel()));
-	this.setDefense (1);
-	this.setLevel (this.getLevel () + 1);
-    this.setExperience(1);
-    this.setExpToNext();
+    maxHealth = maxHealth + (3 * level);
+    health = maxHealth - (maxHealth - health);
+    maxEnergy = maxEnergy + 1;
+    baseAttack = baseAttack + (2 * level);
+	attack = 1;
+    baseDefense = (baseDefense + (2 * level));
+	defense = 1;
+	level = level + 1 ;
+    experience = 1 ;
+    expToNext = 1 ;
   }
 }

@@ -8,10 +8,12 @@
  * Modified by:
  * Date: 
  ---------------------------------------------------------------------------*/
+using UnityEngine;
+
 public class wolf1 : enemy
 {
- public wolf1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience)
- : base(10, 10, 5, 5, 3, 3, 8, 0, 0, 1, 1)
+ public wolf1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+ : base(10, 10, 5, 5, 3, 3, 8, 0, 0, 1, 1, 1)
 	{
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);

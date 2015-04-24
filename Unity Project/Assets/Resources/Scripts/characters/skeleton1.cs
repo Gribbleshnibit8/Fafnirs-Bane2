@@ -12,8 +12,8 @@
 public class skeleton1 : enemy
 {
   
-  public skeleton1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience)
-  : base(15, 15, 5, 5, 8, 8, 5, 0, 0, 1, 1)
+  public skeleton1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+  : base(15, 15, 5, 5, 8, 8, 5, 0, 0, 1, 1, 1)
 	{
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);

@@ -10,8 +10,8 @@
  ---------------------------------------------------------------------------*/
 public class ghoul : enemy
 {
-  public ghoul(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience)
-  : base(20, 20, 2, 2, 8, 8, 5, 0, 0, 1, 1)
+  public ghoul(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+  : base(20, 20, 2, 2, 8, 8, 5, 0, 0, 1, 1, 1)
 	{
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);
@@ -26,6 +26,7 @@ public class ghoul : enemy
 		setLevel(LVL);
 		setExperience(EXP);
 		setExpToNext();
+		setRange(RNG);
     */
 	}
   
