@@ -30,9 +30,9 @@ public class MovementGrid : GridGenerator
 	public override void SetPoint(Transform t)
 	{
 		MovePoint = t;
-		RootMenuManager.Instance.SetActiveMenu(RootMenuManager.ActiveMenu.ConfirmMenu, false);
+		RootMenuManager.Instance.SetActiveMenu(ActiveMenu.ConfirmMenu, false);
 
-		var confirm = ((ConfirmMenu) RootMenuManager.Instance.GetActiveMenuComponent(RootMenuManager.ActiveMenu.ConfirmMenu));
+		var confirm = ((ConfirmMenu) RootMenuManager.Instance.GetActiveMenuComponent(ActiveMenu.ConfirmMenu));
 
 		confirm.Callback = Callback;
 

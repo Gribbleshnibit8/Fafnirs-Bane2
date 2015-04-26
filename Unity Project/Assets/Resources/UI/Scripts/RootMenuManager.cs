@@ -8,18 +8,20 @@ using UnityEngine;
  * and gives access to their menu controller components 
  */
 
+public enum ActiveMenu
+{
+	TitleMenu = 0,
+	OverworldMenu = 1,
+	BattleMenu = 2,
+	StoryMenu = 3,
+	ConfirmMenu = 4,
+	None = 5
+}
+
 public class RootMenuManager : MonoBehaviour
 {
 
-	public enum ActiveMenu
-	{
-		TitleMenu = 0,
-		OverworldMenu = 1,
-		BattleMenu = 2,
-		StoryMenu = 3,
-		ConfirmMenu = 4,
-		None = 5
-	}
+	
 
 	private static RootMenuManager _rootMenu;
 	public static RootMenuManager Instance

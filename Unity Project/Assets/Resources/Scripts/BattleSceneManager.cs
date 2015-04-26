@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleSceneManager : MonoBehaviour
@@ -6,35 +7,33 @@ public class BattleSceneManager : MonoBehaviour
 
 	public static MovementGrid Grid;
 
-	// TODO: Change type of class to character sheet, or gameobject of character
-	// NOTE: Parent gameobject can be gotten from any component
-	/// <summary>
-	/// The currently active character
-	/// </summary>
-	public static AIScript Character;
-
 	public static List<CharacterAction> CharActionList;
 
-	public static List<Transform> MovePoint;
+	public static List<Vector2> MovePoint;
+
+	public static partyHandler PartyHandler;
 
 	public static Camera MainCamera;
 	private static float CameraOriginalSize;
 
 	void Awake()
 	{
-		MovePoint = new List<Transform>();
+		MovePoint = new List<Vector2>();
 		Grid = GetComponentInChildren<MovementGrid>();
-		Character = GetComponentInChildren<AIScript>();
 		MainCamera = GetComponentInChildren<Camera>();
 			CameraOriginalSize = MainCamera.orthographicSize;
+		PartyHandler = GameObject.FindGameObjectWithTag("PartyHandler").GetComponent<partyHandler>();
 
 		CharActionList = new List<CharacterAction>();
 	}
 
-
+	/// <summary>
+	/// Adds a transform position to the list of movement positions
+	/// </summary>
+	/// <param name="t">Transform to move to</param>
 	public static void AddMovePoint(Transform t)
 	{
-		MovePoint.Add(t);
+		MovePoint.Add(t.position);
 		Grid.ClearGrid();
 	}
 
@@ -68,10 +67,24 @@ public class BattleSceneManager : MonoBehaviour
 		MainCamera.orthographicSize = CameraOriginalSize;
 	}
 
+	public static Vector2 GetLastPosition()
+	{
+		var character = PartyHandler.getActiveCharacter();
+
+		if (MovePoint.Count == 0)
+			return character.transform.position;
+		
+		return MovePoint.Last();
+	}
+
 
 	public static void ExecuteQueue()
 	{
 		// TODO: Send queue to character, wait for character to finish action. Switch to next character, bring menus back up
+
+		var character = PartyHandler.getActiveCharacter();
+
+		// execute the queue
 	}
 
 }

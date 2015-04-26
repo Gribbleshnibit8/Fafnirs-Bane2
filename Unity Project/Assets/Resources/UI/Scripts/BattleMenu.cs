@@ -20,22 +20,30 @@ public enum ActionType
 	None
 }
 
+public enum AttackDirection
+{
+	Up = 1,
+	Down = 2,
+	Left = 3,
+	Right = 4
+}
+
 public class BattleMenu : MonoBehaviour
 {
 
 	
 
-	public static GameObject ActionQueue { get; private set; }
+	public GameObject ActionQueue { get; private set; }
 
-	private static List<GameObject> ActionQueueList = new List<GameObject>();
+	private List<GameObject> ActionQueueList = new List<GameObject>();
 
-	public static VitalBarBasic HealthBar { get; private set; }
+	public VitalBarBasic HealthBar { get; private set; }
 
-	public static VitalBarBasic EnergyBar { get; private set; }
+	public VitalBarBasic EnergyBar { get; private set; }
 
-	public static List<UIAnchor> Anchors { get; private set; }
+	public List<UIAnchor> Anchors { get; private set; }
 
-	public static ActionType CurrentAction { get; private set; }
+	public ActionType CurrentAction { get; private set; }
 
 
 	#region Unity Functions
@@ -81,7 +89,7 @@ public class BattleMenu : MonoBehaviour
 	/// If the queue is full, it returns a null value.
 	/// </summary>
 	/// <returns>New action</returns>
-	private static GameObject AddActionToQueue(string bName)
+	private GameObject AddActionToQueue(string bName)
 	{
 		GameObject action = null;
 		if (ActionQueueList.Count < 5)
@@ -109,19 +117,19 @@ public class BattleMenu : MonoBehaviour
 	/// Creates an attack range grid based on the current character's stats.
 	/// If last command is a move, then the attack will take place at the NEW move position, otherwise current position.
 	/// </summary>
-	public static void ActionAttack()
+	public void ActionAttack()
 	{
 		Debug.Log("Action Attack Clicked");
 		CurrentAction = ActionType.Attack;
-		var action = AddActionToQueue("Attack");
-		if (action == null) return;
 
+		var menu = GetComponentInChildren<AttackDirectionWindow>();
+		menu.gameObject.SetActive(true);
 	}
 
 	/// <summary>
 	/// Opens the skillz menu, allowing the active character to select from their skillz
 	/// </summary>
-	public static void ActionSpell()
+	public void ActionSpell()
 	{
 		Debug.Log("Action Spell Clicked");
 		CurrentAction = ActionType.Skillz;
@@ -138,7 +146,10 @@ public class BattleMenu : MonoBehaviour
 		Debug.Log("Action Move Clicked");
 		CurrentAction = ActionType.Move;
 
-		BattleSceneManager.Grid.CreateGrid(BattleSceneManager.Character.transform.position);
+		BattleSceneManager.Grid.CreateGrid(
+			BattleSceneManager.GetLastPosition(),
+			BattleSceneManager.PartyHandler.getActiveCharacter().GetComponent<character>().movement
+		);
 
 		BattleSceneManager.Grid.Callback = new ActionMessage(gameObject, "ConfirmMove");
 	}
@@ -170,6 +181,8 @@ public class BattleMenu : MonoBehaviour
 	/// </summary>
 	public void ActionFinalize()
 	{
+		
+
 		BattleSceneManager.ExecuteQueue();
 	}
 
@@ -180,23 +193,30 @@ public class BattleMenu : MonoBehaviour
 
 	public void AttackUp()
 	{
-		// TODO: Create action button for queue
-		// TODO: Create new action object and add to list
+		var action = AddActionToQueue("Attack");
+		if (action == null) return;
+		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nUp";
 	}
 
 	public void AttackDown()
 	{
-		
+		var action = AddActionToQueue("Attack");
+		if (action == null) return;
+		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nDown";
 	}
 
 	public void AttackLeft()
 	{
-		
+		var action = AddActionToQueue("Attack");
+		if (action == null) return;
+		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nLeft";
 	}
 
 	public void AttackRight()
 	{
-		
+		var action = AddActionToQueue("Attack");
+		if (action == null) return;
+		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nRight";
 	}
 
 	#endregion Attack Button Events
