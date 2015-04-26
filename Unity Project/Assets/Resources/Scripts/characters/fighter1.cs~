@@ -10,8 +10,8 @@
  ---------------------------------------------------------------------------*/
 public class fighter1 : hero
 {
-  public fighter1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
-  : base(20, 20, 5, 5, 10, 10, 5, 0, 0, 1, 1, 1)
+  public fighter1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience)
+  : base(20, 20, 5, 5, 10, 10, 5, 0, 0, 1, 1)
     {
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);
@@ -26,7 +26,6 @@ public class fighter1 : hero
     setLevel(LVL);
     setExperience(EXP);
     setExpToNext();
-    setRange(RNG);
     */
     }
   
@@ -36,15 +35,15 @@ public class fighter1 : hero
   
   public void levelUP()
   {
-    maxHealth = (maxHealth + (5 * level));
+    MaxHealth = (MaxHealth + (5 * Level));
     health = maxHealth - (maxHealth - health);
     maxEnergy = maxEnergy + 1;
     baseAttack = baseAttack + (4 * level);
     attack = 1;
-    baseDefense = baseDefense + (4 * level);
+    baseDefense = baseDefense + (4 * Level);
     defense = 1;
     level = level + 1;
     experience = 1;
-    expToNext = 99;
+    expToNext = 100 - experience;
   }
 }

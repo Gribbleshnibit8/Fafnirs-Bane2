@@ -10,43 +10,31 @@
  ---------------------------------------------------------------------------*/
 public class enemy : character
 {
-  public enemy(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience)
-  : base(MaxHealth, health, maxEnergy, energy, baseAttack, baseDefense, movement, attack, defense, level, experience)
+  public enemy(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+  : base(MaxHealth, health, maxEnergy, energy, baseAttack, baseDefense, movement, attack, defense, level, experience, range)
   {
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);
-		setHealth(HP);
-		setMaxEnergy(maxMP);
-		setEnergy(MP);
-		setBaseAttack(baseATK);
-		setBaseDefense(baseDEF);
-		setMovement(MOV);
-		setAttack(ATK);
-		setDefense(DEF);
-		setLevel(LVL);
-		setExperience(EXP);
-		setExpToNext();
+    setHealth(HP);
+    setMaxEnergy(maxMP);
+    setEnergy(MP);
+    setBaseAttack(baseATK);
+    setBaseDefense(baseDEF);
+    setMovement(MOV);
+    setAttack(ATK);
+    setDefense(DEF);
+    setLevel(LVL);
+    setExperience(EXP);
+    setExpToNext();
     */
   }
   
-  public void attack()
+	/*---------------------------------------------------------------------
+  * These functions will not be implemented in version 1.
+  * 
+  public void attackAction()
   {
-    //add in code to attack an enemy by calling targetHero(), this.getAttack(), enemy.getDefense()
-     /*
-     
-     check if in range of a hero
-     
-     check if missed
-     if(rand(%100) > 15)
-     {
-      int damage = this.getAttack() - hero.getDefense()
-      hero.setHealth(damage);
-      if(hero.getHealth() <= 0)
-      {
-        hero.destroy();
-      }
-     }
-     */
+  	//add in hero specific attack actions.
   }
   
   public void defend()
@@ -54,7 +42,6 @@ public class enemy : character
     //add in code to give a 1 turn boost to defense
   }
   
-
   public void useSkill()
   {
     //add code to pick and use an available skill
@@ -65,4 +52,9 @@ public class enemy : character
     // add in code to initiate movement
   }
   
+  public void useItem()
+  {
+    // add in code to select and use an item.
+  }
+*/
 }

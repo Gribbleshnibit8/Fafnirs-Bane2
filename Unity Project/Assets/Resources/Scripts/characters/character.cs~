@@ -1,0 +1,152 @@
+/* ---------------------------------------------------------------------------
+ * Name: character.cs
+ * Purpose: Base character class that all hero and enemy characters will be
+ *          built on.
+ *
+ * Author: William Witten
+ * Date: 3/25/2015
+ * Modified by: William Witten
+ * Date: 4/1/2015
+ ---------------------------------------------------------------------------*/
+
+using unityEngine;
+
+public class character : monobehavior
+{
+
+  private int _maxHealth;
+  public int maxHealth
+  {
+    get { return _maxHealth;}
+    set { _maxHealth = value;}
+  }
+
+  private int _health;
+  public int health
+  {
+    get { return _health;}
+    set { if(_health + value <= _maxHealth) {_health = _health + value;}
+            else(_health = _maxHealth; }
+  }
+  private int _maxEnergy;
+  public int maxEnergy
+  {
+    get { return _maxEnergy;}
+    set { _maxEnergy = value;}
+  }
+
+  private int _energy;
+  public int energy
+  {
+  get { return _energy;}
+  set { if(_energy + value <= _maxEnergy) {_energy = value;}
+          else(_energy = _maxEnergy); }
+  }
+  
+  private int _maxMovement;
+  public int maxMovement
+  {
+  get { return _maxMovement;}
+  set { _maxMovement = value;}
+  }
+
+  private int _movement;
+  public int movement
+  {
+    get { return _movement;}
+    set { if(_maxMovement + value <= _maxMovement) {_movement = value;}
+            else(_movement = _maxMovement; }
+  }
+
+  private int _baseAttack;
+  public int baseAttack
+  {
+    get { return _baseAttack;}
+    set { _baseAttack = value;}
+  }
+
+  private int _attack;
+  public int attack
+  {
+    get { return _attack;}
+    set { _attack = value + _baseAttack;}
+  }
+
+  private int _baseDefense;
+  public int baseDefense
+  {
+    get { return _baseDefense;}
+    set { _baseDefense = value;}
+  }
+
+  private int _defense;
+  public int defense
+  {
+    get { return _defense;}
+    set { _defense = value + _baseDefense;}
+  }
+
+  private int _level;
+  public int level
+  {
+    get { return _level;}
+    set { if(_level + value < 21) {_level = value;}
+            else {_level = 20;} }
+  }
+
+  private int _experience;
+  public int experience
+  {
+    get { return _experience;}
+    set { if(_experience + value <= 99) {_experience = _experience + value;}
+            else {_experience = 1; levelUP(); }
+  }
+
+  private int _expToNext;
+  public int expToNext
+  {
+    get { return _expToNext;}
+    set { _expToNext = value;}
+  }
+
+/*______________________________________________________________________________*/
+
+  public void levelUP()
+  {
+    // do nothing, be overridden in derived classes
+  }
+ 
+	
+  public character()
+  {
+    setMaxHealth(1);
+    set Health(1);
+    set MaxEnergy(1);
+    set Energy(1);
+    set BaseAttack(1);
+    set BaseDefense(1);
+    set Movement(1);
+    set Attack(1);
+    set Defense(1);
+    set Level(1);
+    set Experience(1);
+    set ExpToNext();
+  }
+  
+  public character(int maxHP, int HP, int maxMP, int MP, int baseATK, int baseDEF, int MOV, int ATK, int DEF, int LVL, int EXP)
+  {
+    set MaxHealth(maxHP);
+    set Health(HP);
+    set MaxEnergy(maxMP);
+    set Energy(MP);
+    set BaseAttack(baseATK);
+    set BaseDefense(baseDEF);
+    set Movement(MOV);
+    set Attack(ATK);
+    set Defense(DEF);
+    set Level(LVL);
+    set Experience(EXP);
+    set ExpToNext();
+  }
+
+}

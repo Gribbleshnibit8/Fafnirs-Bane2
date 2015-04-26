@@ -10,60 +10,38 @@
  ---------------------------------------------------------------------------*/
 public class hero : character
 {
-  public hero(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience)
-  : base(MaxHealth, health, maxEnergy, energy, baseAttack, baseDefense, movement, attack, defense, level, experience)
+  public hero(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+  : base(MaxHealth, health, maxEnergy, energy, baseAttack, baseDefense, movement, attack, defense, level, experience, range)
   {
     /* inherited from base class as follows: 
     setmaxHealth(maxHP);
-		setHealth(HP);
-		setMaxEnergy(maxMP);
-		setEnergy(MP);
-		setBaseAttack(baseATK);
-		setBaseDefense(baseDEF);
-		setMovement(MOV);
-		setAttack(ATK);
-		setDefense(DEF);
-		setLevel(LVL);
-		setExperience(EXP);
-		setExpToNext();
-    */
+    setHealth(HP);
+    setMaxEnergy(maxMP);
+    setEnergy(MP);
+    setBaseAttack(baseATK);
+    setBaseDefense(baseDEF);
+    setMovement(MOV);
+    setAttack(ATK);
+    setDefense(DEF);
+    setLevel(LVL);
+    setExperience(EXP);
+    setExpToNext();
+	setRange(RNG);
+	*/
   }
-  public void attack()
+
+  /*---------------------------------------------------------------------
+  * These functions will not be implemented in version 1.
+  * 
+  public void attackAction()
   {
-    //add in code to attack an enemy by calling targetEnemy(), this.getAttack(), enemy.getDefense()
-     /*
-     
-     check if in range of an enemy
-     
-     check if missed
-     if(rand(%100) > 15)
-     {
-      int damage = this.getAttack() - enemy.getDefense()
-      enemy.setHealth(damage);
-      if (enemy.getHealth()<= 0), 
-      {
-        enemy.destroy()
-        this.setExperience(49)
-        if(this.getExperience() >= 100)
-        {
-          if(this.getLevel() < 20)
-          {
-          this.LevelUP();
-          }
-        }
-      }
-     }
-     */
+  	//add in hero specific attack actions.
   }
   
   public void defend()
   {
     //add in code to give a 1 turn boost to defense
   }
-  
-  
-  //setAttack and setDefense need to be modified to add in their respective item's values rather than a hard coded value.
-  //this.setAttack(this.equipped[0].getDMG()) and this.setDefense(this.equipped[1].getArmorPoints());
   
   public void useSkill()
   {
@@ -79,4 +57,5 @@ public class hero : character
   {
     // add in code to select and use an item.
   }
+*/
 }

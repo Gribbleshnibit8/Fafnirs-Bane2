@@ -715,7 +715,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 471604}
   - 212: {fileID: 21271610}
-  - 95: {fileID: 9571610}
   - 114: {fileID: 11471606}
   - 114: {fileID: 11471608}
   - 50: {fileID: 5071610}
@@ -1983,21 +1982,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171592}
   m_Enabled: 1
---- !u!95 &9571610
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e195896813fd6ac4c9d4207fa576826e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 0
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11471600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2153,6 +2137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2278ac6ea9a6e547b739a7b84cc5584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridObject: 
+  MovePoint: {fileID: 0}
 --- !u!114 &11471606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2214,8 +2200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcee99b346422664c881c5db6ccf74cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grid: {fileID: 0}
-  _character: {fileID: 0}
 --- !u!124 &12471610
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2243,7 +2227,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: 08051d4e170ec4c4fadd915097e5e61e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8edde80f44d672544821b948505f5072, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

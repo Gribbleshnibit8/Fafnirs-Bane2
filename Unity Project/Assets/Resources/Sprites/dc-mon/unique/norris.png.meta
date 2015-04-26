@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 592ec59636d7100418a340b00607fb73
+guid: 649ab19866086f14f854a02a215e2289
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ancient_lich
+    21300000: norris
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
