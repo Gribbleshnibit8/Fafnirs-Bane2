@@ -4,17 +4,17 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour 
 {
 	/// <summary>
-	/// Distance in the x axis the character can move before the camera follows.
+	/// Distance in the x axis the Character can move before the camera follows.
 	/// </summary>
 	public float xMargin = 1f;
 
 	/// <summary>
-	/// Distance in the y axis the character can move before the camera follows.
+	/// Distance in the y axis the Character can move before the camera follows.
 	/// </summary>
 	public float yMargin = 1f;
 
 	/// <summary>
-	/// Reference to the character's transform.
+	/// Reference to the Character's transform.
 	/// </summary>
 	public Transform character;
 
@@ -56,7 +56,7 @@ public class CameraFollow : MonoBehaviour
 
 
 	/// <summary>
-	/// Returns true if the distance between the camera and the character in the x axis is greater than the x margin.
+	/// Returns true if the distance between the camera and the Character in the x axis is greater than the x margin.
 	/// </summary>
 	bool CheckXMargin()
 	{
@@ -64,7 +64,7 @@ public class CameraFollow : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Returns true if the distance between the camera and the character in the y axis is greater than the y margin.
+	/// Returns true if the distance between the camera and the Character in the y axis is greater than the y margin.
 	/// </summary>
 	bool CheckYMargin()
 	{
@@ -79,7 +79,7 @@ public class CameraFollow : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// Camera follows character object based on the x and y margins for the dead zone and locks the viewport to the map's boundries
+	/// Camera follows Character object based on the x and y margins for the dead zone and locks the viewport to the map's boundries
 	/// </summary>
 	void TrackCharacter ()
 	{
@@ -87,14 +87,14 @@ public class CameraFollow : MonoBehaviour
 		float targetX = transform.position.x;
 		float targetY = transform.position.y;
 
-		// If the character has moved beyond the x margin...
+		// If the Character has moved beyond the x margin...
 		if(CheckXMargin())
-			// ... the target x coordinate should be a Lerp between the camera's current x position and the character's current x position.
+			// ... the target x coordinate should be a Lerp between the camera's current x position and the Character's current x position.
 			targetX = Mathf.Lerp(transform.position.x, character.position.x, xSmooth * Time.deltaTime);
 
-		// If the character has moved beyond the y margin...
+		// If the Character has moved beyond the y margin...
 		if(CheckYMargin())
-			// ... the target y coordinate should be a Lerp between the camera's current y position and the character's current y position.
+			// ... the target y coordinate should be a Lerp between the camera's current y position and the Character's current y position.
 			targetY = Mathf.Lerp(transform.position.y, character.position.y, ySmooth * Time.deltaTime);
 
 		// The target x and y coordinates should not be larger than the maximum or smaller than the minimum.

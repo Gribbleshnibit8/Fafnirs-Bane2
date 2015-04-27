@@ -45,7 +45,7 @@ public class OverworldNode : MonoBehaviour
 	#endregion
 
 	/// <summary>
-	/// Sends this node as target to the character seeker
+	/// Sends this node as target to the Character seeker
 	/// </summary>
 	public void TravelToNode()
 	{

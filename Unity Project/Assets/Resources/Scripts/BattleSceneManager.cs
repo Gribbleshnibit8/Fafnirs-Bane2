@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -25,6 +27,14 @@ public class BattleSceneManager : MonoBehaviour
 		PartyHandler = GameObject.FindGameObjectWithTag("PartyHandler").GetComponent<partyHandler>();
 
 		CharActionList = new List<CharacterAction>();
+
+		//BattleMenu.Instance.ChangeCharacter(PartyHandler.GetActiveCharacter().GetComponent<Character>());
+	}
+
+	void Update()
+	{
+		if(MainCamera.GetComponent<CameraFollow>().character == null)
+			MainCamera.GetComponent<CameraFollow>().character = PartyHandler.GetActiveCharacter().transform;
 	}
 
 	/// <summary>
@@ -69,7 +79,7 @@ public class BattleSceneManager : MonoBehaviour
 
 	public static Vector2 GetLastPosition()
 	{
-		var character = PartyHandler.getActiveCharacter();
+		var character = PartyHandler.GetActiveCharacter();
 
 		if (MovePoint.Count == 0)
 			return character.transform.position;
@@ -80,11 +90,16 @@ public class BattleSceneManager : MonoBehaviour
 
 	public static void ExecuteQueue()
 	{
-		// TODO: Send queue to character, wait for character to finish action. Switch to next character, bring menus back up
+		// TODO: Send queue to Character, wait for Character to finish action. Switch to next Character, bring menus back up
 
-		var character = PartyHandler.getActiveCharacter();
+		var character = PartyHandler.GetActiveCharacter();
 
-		// execute the queue
+
+
+
+
+
+		BattleMenu.Instance.ChangeCharacter(character.GetComponent<Character>());
 	}
 
 }

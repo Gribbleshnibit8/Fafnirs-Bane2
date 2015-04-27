@@ -491,6 +491,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 471576}
   - 114: {fileID: 11471604}
+  - 114: {fileID: 11408340}
   m_Layer: 0
   m_Name: MovementGrid
   m_TagString: Untagged
@@ -620,6 +621,7 @@ GameObject:
   - 92: {fileID: 9271610}
   - 124: {fileID: 12471610}
   - 81: {fileID: 8171610}
+  - 114: {fileID: 11408338}
   m_Layer: 31
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -705,26 +707,6 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!1 &171604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 471604}
-  - 212: {fileID: 21271610}
-  - 114: {fileID: 11471606}
-  - 114: {fileID: 11471608}
-  - 50: {fileID: 5071610}
-  - 61: {fileID: 6171606}
-  m_Layer: 31
-  m_Name: Donkey Kong
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &171606
 GameObject:
@@ -1278,7 +1260,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: -5.5, z: -10}
+  m_LocalPosition: {x: 1.51999998, y: -4.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 471606}
@@ -1344,18 +1326,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 471548}
   m_RootOrder: 9
---- !u!4 &471604
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: -5.5, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 471606}
-  m_RootOrder: 4
 --- !u!4 &471606
 Transform:
   m_ObjectHideFlags: 1
@@ -1370,7 +1340,6 @@ Transform:
   - {fileID: 471592}
   - {fileID: 471556}
   - {fileID: 471558}
-  - {fileID: 471604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &471608
@@ -1510,21 +1479,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171550}
   m_Mesh: {fileID: 0}
---- !u!50 &5071610
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
 --- !u!61 &6171542
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -1877,17 +1831,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .75, y: 1.75}
   m_Center: {x: .375, y: -.875}
---- !u!61 &6171606
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: .800000012, y: .800000012}
-  m_Center: {x: 0, y: 0}
 --- !u!61 &6171608
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -1916,7 +1859,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171592}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!82 &8271610
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1982,6 +1925,32 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171592}
   m_Enabled: 1
+--- !u!114 &11408338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbc93a6084585d479eea403522a6931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMargin: 0
+  yMargin: 0
+  character: {fileID: 0}
+  map: {fileID: 171556}
+--- !u!114 &11408340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55487eed4b2dc3b448537ca530b73fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11471600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2049,7 +2018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   astarData:
     hasBeenReverted: 0
-    data: 504b0304140000080800966d7946dbcee09725020000510400000b0024006772617068302e6a736f6e0a0020000000000001001800c9b839c32b67d001c9b839c32b67d001c9b839c32b67d0015d535d8fda3010fc2b959f1394403e086f5728b4d2b5878e567da8fa60920db148ecc876cac729ffbdebc4040248449e99eceeec980f72685846161fe41f2d1b200b127b61928434c8218ec1df831b8779e44d23ba0f92d4f32024ad43a8aa21d5ef54334116be4398121568c9d2177e28b18ae71029b4a1b9a97d268b04a14b475cf1174ba4c03548cbfa61c7bae669f986a725ad6ac876ec0a5636eb8bcc0ccf45063d85fd5351964cd96efa521b23bbba0009c42119a3389ce985ca02d8a1d064317d78e92dcf15e87e6a7a593189deba5ae4b3d00556a8a83a3eec681a46edadd2f731e5fac8e452545f6d1fdfc3aaba60e9f19d5e52aa10ca69a9600cae1e476cf8899647ba2fe17701fc87d848d170cc48cb065f6b144c57b7c3606159407abca1fd6423a8a9ed0afb0d869324f2822808e65f5c6fdeef7c92f49fa06d8de3f3b264d5dee0c1fdf87266aadb1d02bb52983d9b60416218df70fe2e71d57541cc0cf64bc14f7a50836b0baf99541a89ce306db47865fcb8912cbb2b6fe88a29fdca2ad62d137337e6f6a291a8246b7c623e69a39742723058efb7064e4b7dd962333d4ef88919da3de16b9a6ad1e761197bb5c7f20e1cb49e3726b6e26433651cabd272db93dd20b83d7e1b9763fc68c72ce0d346d2da5cba4cd2d3865d2b3198623c17bb5402f0b7ee5d3b4a45f19f771e2e21caffdcc3743cfb7d8afc49e10ee741d8cb9cf92409bc2889f1183bae3f89e7737f96cc0c1d39ae65a38ef5ffb6ed7f504b0304140000080800966d7946287e18aa4300000048000000120024006772617068305f656469746f722e6a736f6e0a0020000000000001001800d9df39c32b67d001d9df39c32b67d001d9df39c32b67d001ab56cac94fce4e4d51b22a292a4dd5512acec82f77ad28294a54b24a4bcc29068a94a456949416a58665166726e5a4c2d4156496e59728592939a7e695a41629d50200504b0304140000080800966d7946697635c27400000081000000090024006d6574612e6a736f6e0a0020000000000001001800d9df39c32b67d001d9df39c32b67d001d9df39c32b67d0011d8cb10e82301040ffe5662487d23665756023ee86a1d82bdce0959462628cff2e757bc37bef032f4a1b47810e2eb5860ae6e4d66583ae3970677fd01d0c2a6b956b031943cd4427a382c6b376536b1f88a460ac20bf571adc93fec5cde525b07896b9ee13fbbe5c8b25d1d335ee928b86e3f707504b01022d00140000080800966d7946dbcee09725020000510400000b00240000000000000000000000000000006772617068302e6a736f6e0a0020000000000001001800c9b839c32b67d001c9b839c32b67d001c9b839c32b67d001504b01022d00140000080800966d7946287e18aa43000000480000001200240000000000000000000000720200006772617068305f656469746f722e6a736f6e0a0020000000000001001800d9df39c32b67d001d9df39c32b67d001d9df39c32b67d001504b01022d00140000080800966d7946697635c274000000810000000900240000000000000000000000090300006d6574612e6a736f6e0a0020000000000001001800d9df39c32b67d001d9df39c32b67d001d9df39c32b67d001504b050600000000030003001c010000c80300000000
+    data: 504b0304140000080800197f9646dbcee09725020000510400000b0024006772617068302e6a736f6e0a00200000000000010018001f8c81da3e7dd0011f8c81da3e7dd0011f8c81da3e7dd0015d535d8fda3010fc2b959f1394403e086f5728b4d2b5878e567da8fa60920db148ecc876cac729ffbdebc4040248449e99eceeec980f72685846161fe41f2d1b200b127b61928434c8218ec1df831b8779e44d23ba0f92d4f32024ad43a8aa21d5ef54334116be4398121568c9d2177e28b18ae71029b4a1b9a97d268b04a14b475cf1174ba4c03548cbfa61c7bae669f986a725ad6ac876ec0a5636eb8bcc0ccf45063d85fd5351964cd96efa521b23bbba0009c42119a3389ce985ca02d8a1d064317d78e92dcf15e87e6a7a593189deba5ae4b3d00556a8a83a3eec681a46edadd2f731e5fac8e452545f6d1fdfc3aaba60e9f19d5e52aa10ca69a9600cae1e476cf8899647ba2fe17701fc87d848d170cc48cb065f6b144c57b7c3606159407abca1fd6423a8a9ed0afb0d869324f2822808e65f5c6fdeef7c92f49fa06d8de3f3b264d5dee0c1fdf87266aadb1d02bb52983d9b60416218df70fe2e71d57541cc0cf64bc14f7a50836b0baf99541a89ce306db47865fcb8912cbb2b6fe88a29fdca2ad62d137337e6f6a291a8246b7c623e69a39742723058efb7064e4b7dd962333d4ef88919da3de16b9a6ad1e761197bb5c7f20e1cb49e3726b6e26433651cabd272db93dd20b83d7e1b9763fc68c72ce0d346d2da5cba4cd2d3865d2b3198623c17bb5402f0b7ee5d3b4a45f19f771e2e21caffdcc3743cfb7d8afc49e10ee741d8cb9cf92409bc2889f1183bae3f89e7737f96cc0c1d39ae65a38ef5ffb6ed7f504b0304140000080800197f9646287e18aa4300000048000000120024006772617068305f656469746f722e6a736f6e0a00200000000000010018001f8c81da3e7dd0011f8c81da3e7dd0011f8c81da3e7dd001ab56cac94fce4e4d51b22a292a4dd5512acec82f77ad28294a54b24a4bcc29068a94a456949416a58665166726e5a4c2d4156496e59728592939a7e695a41629d50200504b0304140000080800197f9646697635c27400000081000000090024006d6574612e6a736f6e0a00200000000000010018001f8c81da3e7dd0011f8c81da3e7dd0011f8c81da3e7dd0011d8cb10e82301040ffe5662487d23665756023ee86a1d82bdce0959462628cff2e757bc37bef032f4a1b47810e2eb5860ae6e4d66583ae3970677fd01d0c2a6b956b031943cd4427a382c6b376536b1f88a460ac20bf571adc93fec5cde525b07896b9ee13fbbe5c8b25d1d335ee928b86e3f707504b01022d00140000080800197f9646dbcee09725020000510400000b00240000000000000000000000000000006772617068302e6a736f6e0a00200000000000010018001f8c81da3e7dd0011f8c81da3e7dd0011f8c81da3e7dd001504b01022d00140000080800197f9646287e18aa43000000480000001200240000000000000000000000720200006772617068305f656469746f722e6a736f6e0a00200000000000010018001f8c81da3e7dd0011f8c81da3e7dd0011f8c81da3e7dd001504b01022d00140000080800197f9646697635c274000000810000000900240000000000000000000000090300006d6574612e6a736f6e0a00200000000000010018001f8c81da3e7dd0011f8c81da3e7dd0011f8c81da3e7dd001504b050600000000030003001c010000c80300000000
     data_backup: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -2117,7 +2086,7 @@ MonoBehaviour:
   minAreaSize: 0
   limitGraphUpdates: 1
   maxGraphUpdateFreq: .200000003
-  lastScanTime: .00300020003
+  lastScanTime: 0
   inGameDebugPath: 
   isScanning: 0
   euclideanEmbedding:
@@ -2139,56 +2108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridObject: 
   MovePoint: {fileID: 0}
---- !u!114 &11471606
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawGizmos: 1
-  detailedGizmos: 1
-  saveGetNearestHints: 1
-  startEndModifier:
-    priority: 1
-    addPoints: 0
-    exactStartPoint: 0
-    exactEndPoint: 0
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 1
-  traversableTags:
-    tagsChange: -1
-    tagsSet: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &11471608
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8dc15d866354ec4b893f0bcc300eaa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  repathRate: .5
-  target: {fileID: 0}
-  canSearch: 1
-  canMove: 1
-  speed: .5
-  turningSpeed: 5
-  slowdownDistance: .600000024
-  pickNextWaypointDist: 2
-  forwardLook: 1
-  endReachedDistance: .200000003
-  closestOnPathCheck: 1
 --- !u!114 &11471610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2207,28 +2126,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171592}
   m_Enabled: 1
---- !u!212 &21271610
-SpriteRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171604}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8edde80f44d672544821b948505f5072, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -3,7 +3,7 @@
  * 
  * Purpose: To provide a very basic AI script for the enemy characters.
  * 
- * Method: Calls the Enemy's actions in a set order for each enemy character.
+ * Method: Calls the Enemy's actions in a set order for each enemy Character.
  * 			1: Find closest Hero
  * 			2: Move as close as possible to the closest Hero
  * 			3: Attempt to attack closest Hero if within range
@@ -30,7 +30,7 @@ public class SimpleEnemyAI : MonoBehaviour {
 	 * Name: getClosestHero()
 	 * 
 	 * Purpose: To determine the closest enemy to a particular AI controlled
-	 * 			character and returns the Vector2 position of that closest
+	 * 			Character and returns the Vector2 position of that closest
 	 * 			target.
 	 * 
 	 * Author: William Witten

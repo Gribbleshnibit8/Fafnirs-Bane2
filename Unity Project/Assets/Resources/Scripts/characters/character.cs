@@ -1,37 +1,37 @@
 /* ---------------------------------------------------------------------------
- * Name: character.cs
+ * Name: Character.cs
  * 
- * Purpose: Base character class that all hero and enemy characters will be
+ * Purpose: Base Character class that all hero and enemy characters will be
  *          built on.
  * 
  * 			Provides all relevant stats and functions to be inherited by the 
  * 			lower classes.
  * 
- * 			1: maxHealth - The character's Maximum health, should only change
+ * 			1: maxHealth - The Character's Maximum health, should only change
  * 						at level ups
- * 			2: health - The character's current health at any given moment.
- * 			3: maxEnergy - The character's Maximum available energy, should
+ * 			2: health - The Character's current health at any given moment.
+ * 			3: maxEnergy - The Character's Maximum available energy, should
  * 						only change at level up.
- * 			4: energy - The character's current energy to spend on actions.
- * 			5: maxMovement - The character's maximum movement ability, should
+ * 			4: energy - The Character's current energy to spend on actions.
+ * 			5: maxMovement - The Character's maximum movement ability, should
  * 						only change at level up.
- * 			6: movement - The character's current movement points to spend on
+ * 			6: movement - The Character's current movement points to spend on
  * 						moving across the scene.
- * 			7: baseAttack - The character's attack power before adding in the
+ * 			7: baseAttack - The Character's attack power before adding in the
  * 						power of weapons.
- * 			8: attack - The combination of the character's baseAttack and
+ * 			8: attack - The combination of the Character's baseAttack and
  * 						weapon power.
- * 			9: baseDefense -The character's defense power before adding in the
+ * 			9: baseDefense -The Character's defense power before adding in the
  * 						power of armor.
- * 			10: defense - The combination of the character's baseDefense and 
+ * 			10: defense - The combination of the Character's baseDefense and 
  * 						armor. NOT USED in version 1.
  * 			11: level - The multiplier used to calculate the other stats during
- * 						character creation and level up.
- * 			12: experience - The measure of a character's progress to the next
+ * 						Character creation and level up.
+ * 			12: experience - The measure of a Character's progress to the next
  * 						level up.
  * 			13: expToNext - The remaining experience needed to reach a
- * 						character's next level.
- * 			14: range - The character's attack range.
+ * 						Character's next level.
+ * 			14: range - The Character's attack range.
  *
  * Author: William Witten
  * Date: 3/25/2015
@@ -41,8 +41,25 @@
 
 using UnityEngine;
 
-public class character : MonoBehaviour
+public class Character : MonoBehaviour
 {
+
+	protected virtual void Awake()
+	{
+		maxHealth = 1;
+		health = 1;
+		maxEnergy = 1;
+		energy = 1;
+		baseAttack = 1;
+		baseDefense = 1;
+		movement = 1;
+		attack = 1;
+		defense = 1;
+		level = 1;
+		experience = 1;
+		expToNext = 99;
+		range = 1;
+	}
 
   private int _maxHealth;
   public int maxHealth
@@ -155,7 +172,7 @@ public class character : MonoBehaviour
   }
  
 	/* ---------------------------------------------------------------------------
-	 * Name: character()
+	 * Name: Character()
 	 * 
 	 * Purpose: Default empty constructor, not likely to be used unless an error
 	 * 			has occured.
@@ -164,7 +181,7 @@ public class character : MonoBehaviour
 	 * 
 	 * -------------------------------------------------------------------------*/
 	
-  public character()
+  public Character()
   {
     maxHealth = 1;
     health = 1;
@@ -182,17 +199,17 @@ public class character : MonoBehaviour
   }
   
 	/* ---------------------------------------------------------------------------
-	 * Name: character(int maxHP, int HP, int maxMP, int MP, int baseATK,
+	 * Name: Character(int maxHP, int HP, int maxMP, int MP, int baseATK,
 	 * 					int baseDEF, int MOV, int ATK, int DEF, int LVL, int EXP,
 	 * 					int RNG)
 	 * 
-	 * Purpose: Usual constructor that takes all character stats to generate the
-	 * 			character object, inherited by all lower classes.
+	 * Purpose: Usual constructor that takes all Character stats to generate the
+	 * 			Character object, inherited by all lower classes.
 	 * 
 	 * Author: William Witten
 	 * 
 	 * -------------------------------------------------------------------------*/
-  public character(int maxHP, int HP, int maxMP, int MP, int baseATK, int baseDEF,
+  public Character(int maxHP, int HP, int maxMP, int MP, int baseATK, int baseDEF,
 	                 int MOV, int ATK, int DEF, int LVL, int EXP, int RNG)
   {
     maxHealth = maxHP;
@@ -213,17 +230,17 @@ public class character : MonoBehaviour
 	/* ---------------------------------------------------------------------------
 	 * Name: Attack()
 	 * 
-	 * Purpose: Determines if the attacking character is within range of and hits
-	 * 			an enemy character. Calls the applyDamage function and adds to
-	 * 			the attacking character's experience.
+	 * Purpose: Determines if the attacking Character is within range of and hits
+	 * 			an enemy Character. Calls the applyDamage function and adds to
+	 * 			the attacking Character's experience.
 	 * 
 	 * 			Later Version should include random probability to miss.
 	 * 
-	 * Method: Retrieves the attacking character's current position and then 
-	 * 			uses a raycast to determine if the character hits another character.
-	 * 			If the attack is successful it sends a message to the character that
+	 * Method: Retrieves the attacking Character's current position and then 
+	 * 			uses a raycast to determine if the Character hits another Character.
+	 * 			If the attack is successful it sends a message to the Character that
 	 * 			was hit telling it how much damage to apply before increasing the
-	 * 			attacking character's experience directly.  If the attacker is
+	 * 			attacking Character's experience directly.  If the attacker is
 	 * 			not within range of it's target the move is simply wasted and ends.
 	 * 
 	 * 
@@ -244,8 +261,8 @@ public class character : MonoBehaviour
 	/* ---------------------------------------------------------------------------
 	 * Name: applyDamage(int Damage)
 	 * 
-	 * Purpose: Applies the damage done to the character from the attack function
-	 * 			and calculates if the damage was enough to destroy the character.
+	 * Purpose: Applies the damage done to the Character from the attack function
+	 * 			and calculates if the damage was enough to destroy the Character.
 	 * 
 	 * Author: William Witten
 	 * 
@@ -266,5 +283,12 @@ public class character : MonoBehaviour
 		}
 	}
 
+
+	new public string ToString()
+	{
+		var s = "Movement: " + movement + "\n";
+		s += "Range: " + range;
+		return s;
+	}
 
 }

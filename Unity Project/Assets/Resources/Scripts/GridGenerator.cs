@@ -105,6 +105,8 @@ public class GridGenerator : MonoBehaviour
 			offset.x = originalx;
 		}
 
+		gameObject.transform.position = new Vector3(center.x, center.y, gameObject.transform.position.z);
+
 		Debug.Log("Grid final center is " + gameObject.transform.position);
 	}
 

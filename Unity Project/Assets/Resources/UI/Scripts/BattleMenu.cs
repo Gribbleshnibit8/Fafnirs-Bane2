@@ -6,33 +6,12 @@ using UnityEngine;
 /* Battle Menu
  * 
  * Handles major input and control during battle scenes.
- * Creates and handles actions generated for each character,
+ * Creates and handles actions generated for each Character,
  * then passes them off for actual execution.
  */
 
-public enum ActionType
-{
-	Move,
-	Attack,
-	Inventory,
-	Skillz,
-	Menu,
-	None
-}
-
-public enum AttackDirection
-{
-	Up = 1,
-	Down = 2,
-	Left = 3,
-	Right = 4
-}
-
 public class BattleMenu : MonoBehaviour
 {
-
-	
-
 	public GameObject ActionQueue { get; private set; }
 
 	private List<GameObject> ActionQueueList = new List<GameObject>();
@@ -45,11 +24,15 @@ public class BattleMenu : MonoBehaviour
 
 	public ActionType CurrentAction { get; private set; }
 
+	public static BattleMenu Instance;
+
 
 	#region Unity Functions
 
 		void Awake()
 		{
+			Instance = this;
+
 			Debug.Log("Action Handler Start");
 			CurrentAction = ActionType.None;
 
@@ -69,10 +52,6 @@ public class BattleMenu : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-			HealthBar.MaxValue = 10;
-			EnergyBar.MaxValue = 5;
-			HealthBar.UpdateDisplay();
-			EnergyBar.UpdateDisplay();
 		}
 	
 		// Update is called once per frame
@@ -114,7 +93,7 @@ public class BattleMenu : MonoBehaviour
 	#region Action Button Events
 
 	/// <summary>
-	/// Creates an attack range grid based on the current character's stats.
+	/// Creates an attack range grid based on the current Character's stats.
 	/// If last command is a move, then the attack will take place at the NEW move position, otherwise current position.
 	/// </summary>
 	public void ActionAttack()
@@ -127,7 +106,7 @@ public class BattleMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Opens the skillz menu, allowing the active character to select from their skillz
+	/// Opens the skillz menu, allowing the active Character to select from their skillz
 	/// </summary>
 	public void ActionSpell()
 	{
@@ -139,23 +118,27 @@ public class BattleMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Creates a new movement grid based on active character stats
+	/// Creates a new movement grid based on active Character stats
 	/// </summary>
 	public void ActionMove()
 	{
 		Debug.Log("Action Move Clicked");
 		CurrentAction = ActionType.Move;
 
+		var character = BattleSceneManager.PartyHandler.GetActiveCharacter().GetComponent<Character>();
+
+		Debug.Log("Character is " + character.name + "\n" + character.ToString());
+
 		BattleSceneManager.Grid.CreateGrid(
 			BattleSceneManager.GetLastPosition(),
-			BattleSceneManager.PartyHandler.getActiveCharacter().GetComponent<character>().movement
+			BattleSceneManager.PartyHandler.GetActiveCharacter().GetComponent<Character>().movement
 		);
 
 		BattleSceneManager.Grid.Callback = new ActionMessage(gameObject, "ConfirmMove");
 	}
 
 	/// <summary>
-	/// Shows the inventory for the party, with the focus of the active character
+	/// Shows the inventory for the party, with the focus of the active Character
 	/// </summary>
 	public void ActionInventory()
 	{
@@ -177,12 +160,10 @@ public class BattleMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Finalizes the action queue and sends it off to the character to execute
+	/// Finalizes the action queue and sends it off to the Character to execute
 	/// </summary>
 	public void ActionFinalize()
 	{
-		
-
 		BattleSceneManager.ExecuteQueue();
 	}
 
@@ -196,6 +177,9 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue("Attack");
 		if (action == null) return;
 		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nUp";
+
+		var newAction = new CharacterActionAttack(ActionType.Attack, 1, AttackDirection.Up);
+		BattleSceneManager.CharActionList.Add(newAction);
 	}
 
 	public void AttackDown()
@@ -203,6 +187,9 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue("Attack");
 		if (action == null) return;
 		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nDown";
+
+		var newAction = new CharacterActionAttack(ActionType.Attack, 1, AttackDirection.Down);
+		BattleSceneManager.CharActionList.Add(newAction);
 	}
 
 	public void AttackLeft()
@@ -210,6 +197,9 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue("Attack");
 		if (action == null) return;
 		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nLeft";
+
+		var newAction = new CharacterActionAttack(ActionType.Attack, 1, AttackDirection.Left);
+		BattleSceneManager.CharActionList.Add(newAction);
 	}
 
 	public void AttackRight()
@@ -217,6 +207,9 @@ public class BattleMenu : MonoBehaviour
 		var action = AddActionToQueue("Attack");
 		if (action == null) return;
 		action.GetComponent<ActionButtonActive>().LabelName = "Attack\nRight";
+
+		var newAction = new CharacterActionAttack(ActionType.Attack, 1, AttackDirection.Right);
+		BattleSceneManager.CharActionList.Add(newAction);
 	}
 
 	#endregion Attack Button Events
@@ -237,6 +230,8 @@ public class BattleMenu : MonoBehaviour
 
 				BattleSceneManager.CharActionList.Add(newAction);
 
+				BattleSceneManager.ResetCameraScale();
+
 				break;
 			case -1:
 				// This doesn't really do anything, since we want to ignore a cancel message
@@ -245,5 +240,16 @@ public class BattleMenu : MonoBehaviour
 	}
 
 	#endregion Action Finish
+
+
+	public void ChangeCharacter(Character c)
+	{
+		EnergyBar.SetValues(c.maxEnergy);
+		EnergyBar.UpdateDisplay(c.energy);
+
+		HealthBar.SetValues(c.maxHealth);
+		HealthBar.UpdateDisplay(c.health);
+	}
+
 
 }

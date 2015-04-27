@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
  * Name: fighter1.cs
  * Purpose: Derived fighter class that low level fighters will be based on
- *         inherits from character.cs. Later stronger fighters can be added.
+ *         inherits from Character.cs. Later stronger fighters can be added.
  *
  * Author: William Witten
  * Date: 3/25/2015
@@ -10,7 +10,28 @@
  ---------------------------------------------------------------------------*/
 public class fighter1 : hero
 {
-  public fighter1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+
+	new void Awake()
+	{
+		base.Awake();
+
+		maxHealth = 20;
+		health = 20;
+		maxEnergy = 5;
+		energy = 5;
+		baseAttack = 10;
+		baseDefense = 10;
+		movement = 5;
+		attack = 0;
+		defense = 0;
+		level = 1;
+		experience = 1;
+		expToNext = 99;
+		range = 1;
+	}
+
+
+	public fighter1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
   : base(20, 20, 5, 5, 10, 10, 5, 0, 0, 1, 1, 1)
     {
     /* inherited from base class as follows: 

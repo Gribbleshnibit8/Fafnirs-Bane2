@@ -10,6 +10,28 @@
  ---------------------------------------------------------------------------*/
 public class archer1 : hero
 {
+
+	new void Awake()
+	{
+		base.Awake();
+
+		maxHealth = 20;
+		health = 20;
+		maxEnergy = 5;
+		energy = 5;
+		baseAttack = 5;
+		baseDefense = 5;
+		maxMovement = 7;
+		movement = 7;
+		attack = 0;
+		defense = 0;
+		level = 1;
+		experience = 1;
+		expToNext = 99;
+		range = 2;
+	}
+
+
   archer1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range) 
   : base(20, 20, 5, 5, 5, 5, 7, 0, 0, 1, 1, 2)
   {

@@ -1,14 +1,14 @@
 /* ---------------------------------------------------------------------------
  * Name: enemy.cs
  * Purpose: Base enemy class that all enemy classes will be built on, inherits
- *          from character.cs
+ *          from Character.cs
  *
  * Author: William Witten
  * Date: 3/25/2015
  * Modified by:
  * Date: 
  ---------------------------------------------------------------------------*/
-public class enemy : character
+public class enemy : Character
 {
   public enemy(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
   : base(MaxHealth, health, maxEnergy, energy, baseAttack, baseDefense, movement, attack, defense, level, experience, range)

@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
  * Name: healer1.cs
  * Purpose: Derived healer class that low level healers will be based on
- *         inherits from character.cs. Later stronger healers can be added.
+ *         inherits from Character.cs. Later stronger healers can be added.
  *
  * Author: William Witten
  * Date: 3/25/2015

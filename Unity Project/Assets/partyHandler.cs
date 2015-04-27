@@ -16,7 +16,7 @@ public class partyHandler : MonoBehaviour  {
 	void Start () {
 		enemies = GameObject.FindGameObjectsWithTag("Enemies"); //Finds all GameObjects tagged "enemies"
 		players = GameObject.FindGameObjectsWithTag("Heros"); //Finds all GameObjects tagged "heroes"
-		turn = 0;
+		turn = 1;
 		i = 0;
 		Players = 12;
 		j = 0;
@@ -24,37 +24,34 @@ public class partyHandler : MonoBehaviour  {
 	}
 	
 	//  needs a function to receive a message when an object is destroyed to remove the object from the respective array and decrement the respective counter.
-	
-	public GameObject getActiveCharacter() {
+
+	public GameObject GetActiveCharacter()
+	{
 		if (turn % 2 == 0)
 		{
-			if (j < Enemies) 
-			{
+			return enemies[j];
+		}
+		return players[i];
+	}
+
+	public void NextTurn() {
+		if (turn % 2 == 0)
+		{
+			if (j < Enemies)
 				j++;
-				return enemies[j];
-			} 
 			else
-			{
 				j = 0;
-				return enemies[j];
-			}
 		}
 		else
 		{
-			if(i < Players)
-			{
+			if (i < Players)
 				i++;
-				return players[i];
-			}
-			else 
-			{
+			else
 				i = 0;
-				return players[i];
-			}
 		}
 	}
 
-	//  update should send a message out that tells what the current character is, and recieve back a list of command objects to be executed.
+	//  update should send a message out that tells what the current Character is, and recieve back a list of command objects to be executed.
 	public void updateEnemyCount(){
 		Enemies--;
 		if (Enemies == 0)

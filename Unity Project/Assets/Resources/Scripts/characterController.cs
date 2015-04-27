@@ -14,13 +14,13 @@ public class characterController : MonoBehaviour
 		xChange = signReader (xChange);
 		yChange = signReader (yChange);
 		
-		// The character will move to a set end position.  First, the character will have to appear
+		// The Character will move to a set end position.  First, the Character will have to appear
 		// to be moving towards the position.
 		startPosition = character.rigidbody2D.position;
 		endPosition = new Vector2(startPosition.x + (moveDistance * xChange), startPosition.y + (moveDistance * yChange));
 		character.rigidbody2D.velocity = new Vector2 (moveSpeed * xChange, moveSpeed * yChange);
 		
-		// The script waits while the character apporaches the position
+		// The script waits while the Character apporaches the position
 		while (Vector2.Distance(character.rigidbody2D.position, startPosition) < moveDistance)
 		{
 			yield return null;

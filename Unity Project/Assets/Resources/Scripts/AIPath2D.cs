@@ -30,7 +30,7 @@ using Pathfinding;
  * Note that the #forwardLook range will not match up exactly with the target point practically, even though that's the goal.
  * \shadowimage{aipath_variables.png}
  * This script has many movement fallbacks.
- * If it finds a NavmeshController, it will use that, otherwise it will look for a character controller, then for a rigidbody and if it hasn't been able to find any
+ * If it finds a NavmeshController, it will use that, otherwise it will look for a Character controller, then for a rigidbody and if it hasn't been able to find any
  * it will use Transform.Translate which is guaranteed to always work.
  */
 [RequireComponent(typeof(Seeker))]

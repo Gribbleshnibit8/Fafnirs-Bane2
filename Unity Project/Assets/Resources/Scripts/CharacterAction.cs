@@ -3,18 +3,21 @@ using System.Collections;
 
 public enum AttackDirection
 {
-	Left, Right, Down, Up
+	Up = 1,
+	Down = 2,
+	Left = 3,
+	Right = 4
 }
 
-//public enum ActionType
-//{
-//	Move,
-//	Attack,
-//	Inventory,
-//	Skillz,
-//	Menu,
-//	None
-//}
+public enum ActionType
+{
+	Move,
+	Attack,
+	Inventory,
+	Skillz,
+	Menu,
+	None
+}
 
 public class CharacterAction
 {
@@ -30,6 +33,8 @@ public class CharacterAction
 		Cost = cost;
 	}
 
+	protected virtual void PerformAction(){}
+
 }
 
 public class CharacterActionMove : CharacterAction
@@ -42,6 +47,11 @@ public class CharacterActionMove : CharacterAction
 		Action = action;
 		Cost = cost;
 		Position = position;
+	}
+
+	protected override void PerformAction()
+	{
+		
 	}
 	
 }
@@ -58,4 +68,8 @@ public class CharacterActionAttack : CharacterAction
 		Direction = direction;
 	}
 
+	protected override void PerformAction()
+	{
+		
+	}
 }
