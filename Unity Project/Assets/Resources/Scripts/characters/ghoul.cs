@@ -10,7 +10,28 @@
  ---------------------------------------------------------------------------*/
 public class ghoul : enemy
 {
-  public ghoul(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
+
+	new void Awake()
+	{
+		base.Awake();
+
+		MaxHealth = 20;
+		Health = 20;
+		MaxEnergy = 2;
+		Energy = 2;
+		BaseAttack = 8;
+		BaseDefense = 8;
+		MaxMovement = 5;
+		Movement = 5;
+		Attack = 0;
+		Defense = 0;
+		Level = 1;
+		Experience = 1;
+		ExpToNext = 99;
+		Range = 1;
+	}
+
+	public ghoul(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
   : base(20, 20, 2, 2, 8, 8, 5, 0, 0, 1, 1, 1)
 	{
     /* inherited from base class as follows: 

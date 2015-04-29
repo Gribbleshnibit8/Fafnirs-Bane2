@@ -74,7 +74,7 @@ MonoBehaviour:
   detailedGizmos: 0
   saveGetNearestHints: 1
   startEndModifier:
-    priority: 0
+    priority: 1
     addPoints: 0
     exactStartPoint: 3
     exactEndPoint: 3
@@ -102,7 +102,7 @@ MonoBehaviour:
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 3
+  speed: .100000001
   turningSpeed: 5
   slowdownDistance: .600000024
   pickNextWaypointDist: 2

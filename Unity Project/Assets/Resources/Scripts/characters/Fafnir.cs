@@ -35,15 +35,15 @@ public class Fafnir : enemy
   
   public void levelUP()
   {
-    maxHealth = (maxHealth + (5 * level));
-    health = maxHealth - (maxHealth - health);
-    maxEnergy = maxEnergy + 1;
-    baseAttack = baseAttack + (4 * level);
-    attack = 1;
-    baseDefense = baseDefense + (4 * level);
-    defense = 1;
-    level = level + 1;
-    experience = 1;
-    expToNext = 99;
+	  MaxHealth = (MaxHealth + (5 * Level));
+    Health = MaxHealth - (MaxHealth - Health);
+	MaxEnergy = MaxEnergy + 1;
+	BaseAttack = BaseAttack + (4 * Level);
+    Attack = 1;
+	BaseDefense = BaseDefense + (4 * Level);
+    Defense = 1;
+	Level = Level + 1;
+    Experience = 1;
+    ExpToNext = 99;
   }
 }

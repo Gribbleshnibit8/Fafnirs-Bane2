@@ -15,20 +15,20 @@ public class archer1 : hero
 	{
 		base.Awake();
 
-		maxHealth = 20;
-		health = 20;
-		maxEnergy = 5;
-		energy = 5;
-		baseAttack = 5;
-		baseDefense = 5;
-		maxMovement = 7;
-		movement = 7;
-		attack = 0;
-		defense = 0;
-		level = 1;
-		experience = 1;
-		expToNext = 99;
-		range = 2;
+		MaxHealth = 20;
+		Health = 20;
+		MaxEnergy = 5;
+		Energy = 5;
+		BaseAttack = 5;
+		BaseDefense = 5;
+		MaxMovement = 7;
+		Movement = 7;
+		Attack = 0;
+		Defense = 0;
+		Level = 1;
+		Experience = 1;
+		ExpToNext = 99;
+		Range = 2;
 	}
 
 
@@ -48,7 +48,7 @@ public class archer1 : hero
     set Level(1);
     set Experience(1);
     set ExpToNext();
-    set range(2);
+    set Range(2);
     */
   }
   
@@ -57,15 +57,15 @@ public class archer1 : hero
 
    public void levelUP()
   {
-    maxHealth = maxHealth + (3 * level);
-    health = maxHealth - (maxHealth - health);
-    maxEnergy = maxEnergy + 1;
-    baseAttack = (baseAttack + (2 * level));
-    attack = 1;
-    baseDefense = baseDefense + (3 * level);
-    defense = 1;
-    level = level + 1;
-    experience = 1;
-    expToNext = 99;
+    MaxHealth = MaxHealth + (3 * Level);
+    Health = MaxHealth - (MaxHealth - Health);
+    MaxEnergy = MaxEnergy + 1;
+    BaseAttack = (BaseAttack + (2 * Level));
+    Attack = 1;
+    BaseDefense = BaseDefense + (3 * Level);
+    Defense = 1;
+    Level = Level + 1;
+    Experience = 1;
+    ExpToNext = 99;
   }
 }

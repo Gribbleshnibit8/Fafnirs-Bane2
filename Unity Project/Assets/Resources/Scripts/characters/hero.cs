@@ -41,7 +41,7 @@ public class hero : Character
   * 
   public void attackAction()
   {
-  	//add in hero specific attack actions.
+  	//add in hero specific Attack actions.
   }
   
   public void defend()

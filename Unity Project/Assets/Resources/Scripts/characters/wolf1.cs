@@ -12,6 +12,27 @@ using UnityEngine;
 
 public class wolf1 : enemy
 {
+
+	new void Awake()
+	{
+		base.Awake();
+
+		MaxHealth = 10;
+		Health = 10;
+		MaxEnergy = 5;
+		Energy = 5;
+		BaseAttack = 3;
+		BaseDefense = 3;
+		MaxMovement = 8;
+		Movement = 8;
+		Attack = 0;
+		Defense = 0;
+		Level = 1;
+		Experience = 1;
+		ExpToNext = 99;
+		Range = 1;
+	}
+
  public wolf1(int MaxHealth, int health, int maxEnergy, int energy, int baseAttack, int baseDefense, int movement, int attack, int defense, int level, int experience, int range)
  : base(10, 10, 5, 5, 3, 3, 8, 0, 0, 1, 1, 1)
 	{
