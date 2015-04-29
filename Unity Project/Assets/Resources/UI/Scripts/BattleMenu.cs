@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AnimationOrTween;
 using UnityEngine;
 
 /* Battle Menu
@@ -14,7 +15,7 @@ public class BattleMenu : MonoBehaviour
 {
 	public GameObject ActionQueue { get; private set; }
 
-	private List<GameObject> ActionQueueList = new List<GameObject>();
+	public List<GameObject> ActionQueueList = new List<GameObject>();
 
 	public VitalBarBasic HealthBar { get; private set; }
 
@@ -93,8 +94,8 @@ public class BattleMenu : MonoBehaviour
 	#region Action Button Events
 
 	/// <summary>
-	/// Creates an attack range grid based on the current Character's stats.
-	/// If last command is a move, then the attack will take place at the NEW move position, otherwise current position.
+	/// Creates an Attack Range grid based on the current Character's stats.
+	/// If last command is a move, then the Attack will take place at the NEW move position, otherwise current position.
 	/// </summary>
 	public void ActionAttack()
 	{
@@ -129,10 +130,10 @@ public class BattleMenu : MonoBehaviour
 
 		Debug.Log("Character is " + character.name + "\n" + character.ToString());
 
-		BattleSceneManager.Grid.CreateGrid(
-			BattleSceneManager.GetLastPosition(),
-			BattleSceneManager.PartyHandler.GetActiveCharacter().GetComponent<Character>().movement
-		);
+		var position = BattleSceneManager.GetLastPosition();
+		var range = BattleSceneManager.PartyHandler.GetActiveCharacter().GetComponent<Character>().Movement;
+
+		BattleSceneManager.Grid.CreateGrid(position, range);
 
 		BattleSceneManager.Grid.Callback = new ActionMessage(gameObject, "ConfirmMove");
 	}
@@ -226,9 +227,10 @@ public class BattleMenu : MonoBehaviour
 				if (action == null) return;
 
 				var newAction = new CharacterActionMove(ActionType.Move, 1, BattleSceneManager.Grid.MovePoint.position);
-				BattleSceneManager.Grid.ClearGrid();
+				BattleSceneManager.AddMovePoint(BattleSceneManager.Grid.MovePoint.position);
 
 				BattleSceneManager.CharActionList.Add(newAction);
+
 
 				BattleSceneManager.ResetCameraScale();
 
@@ -244,12 +246,29 @@ public class BattleMenu : MonoBehaviour
 
 	public void ChangeCharacter(Character c)
 	{
-		EnergyBar.SetValues(c.maxEnergy);
-		EnergyBar.UpdateDisplay(c.energy);
+		EnergyBar.SetValues(c.MaxEnergy);
+		EnergyBar.UpdateDisplay(c.Energy);
 
-		HealthBar.SetValues(c.maxHealth);
-		HealthBar.UpdateDisplay(c.health);
+		HealthBar.SetValues(c.MaxHealth);
+		HealthBar.UpdateDisplay(c.Health);
 	}
+
+
+
+	public void AnimateWindowPanels(bool forward = true)
+	{
+		foreach (var anchor in Anchors)
+		{
+			var anim = anchor.GetComponentInChildren<Animation>();
+
+			foreach (AnimationState state in anim)
+			{
+				var animName = state.name;
+				ActiveAnimation.Play(anim, forward ? Direction.Forward : Direction.Reverse);
+			}
+		}
+	}
+
 
 
 }

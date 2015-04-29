@@ -13,7 +13,7 @@ public class BattleSceneManager : MonoBehaviour
 
 	public static List<Vector2> MovePoint;
 
-	public static partyHandler PartyHandler;
+	public static PartyHandler PartyHandler;
 
 	public static Camera MainCamera;
 	private static float CameraOriginalSize;
@@ -24,7 +24,7 @@ public class BattleSceneManager : MonoBehaviour
 		Grid = GetComponentInChildren<MovementGrid>();
 		MainCamera = GetComponentInChildren<Camera>();
 			CameraOriginalSize = MainCamera.orthographicSize;
-		PartyHandler = GameObject.FindGameObjectWithTag("PartyHandler").GetComponent<partyHandler>();
+		PartyHandler = GameObject.FindGameObjectWithTag("PartyHandler").GetComponent<PartyHandler>();
 
 		CharActionList = new List<CharacterAction>();
 
@@ -41,9 +41,9 @@ public class BattleSceneManager : MonoBehaviour
 	/// Adds a transform position to the list of movement positions
 	/// </summary>
 	/// <param name="t">Transform to move to</param>
-	public static void AddMovePoint(Transform t)
+	public static void AddMovePoint(Vector2 v)
 	{
-		MovePoint.Add(t.position);
+		MovePoint.Add(v);
 		Grid.ClearGrid();
 	}
 
@@ -92,14 +92,24 @@ public class BattleSceneManager : MonoBehaviour
 	{
 		// TODO: Send queue to Character, wait for Character to finish action. Switch to next Character, bring menus back up
 
-		var character = PartyHandler.GetActiveCharacter();
+		PartyHandler.GetActiveCharacter().GetComponent<Character>().DoActions(CharActionList);
+		if(CharActionList.Count > 0)
+			BattleMenu.Instance.AnimateWindowPanels();
 
 
+		//BattleMenu.Instance.ChangeCharacter(character.GetComponent<Character>());
+	}
 
 
-
-
-		BattleMenu.Instance.ChangeCharacter(character.GetComponent<Character>());
+	public static void NextTurn()
+	{
+		ClearMovePoint();
+		if (CharActionList.Count > 0)
+			BattleMenu.Instance.AnimateWindowPanels(false);
+		PartyHandler.NextTurn();
+		MainCamera.GetComponent<CameraFollow>().character = PartyHandler.GetActiveCharacter().transform;
+		BattleMenu.Instance.ActionQueueList.Clear();
+		CharActionList.Clear();
 	}
 
 }

@@ -24,10 +24,10 @@ using Pathfinding;
  * The speed is self-explanatory, so is turningSpeed, however #slowdownDistance might require some explanation.
  * It is the approximate distance from the target where the AI will start to slow down. Note that this doesn't only affect the end point of the path
  * but also any intermediate points, so be sure to set #forwardLook and #pickNextWaypointDist to a higher value than this.\n
- * #pickNextWaypointDist is simply determines within what range it will switch to target the next waypoint in the path.\n
+ * #pickNextWaypointDist is simply determines within what Range it will switch to target the next waypoint in the path.\n
  * #forwardLook will try to calculate an interpolated target point on the current segment in the path so that it has a distance of #forwardLook from the AI\n
  * Below is an image illustrating several variables as well as some internal ones, but which are relevant for understanding how it works.
- * Note that the #forwardLook range will not match up exactly with the target point practically, even though that's the goal.
+ * Note that the #forwardLook Range will not match up exactly with the target point practically, even though that's the goal.
  * \shadowimage{aipath_variables.png}
  * This script has many movement fallbacks.
  * If it finds a NavmeshController, it will use that, otherwise it will look for a Character controller, then for a rigidbody and if it hasn't been able to find any

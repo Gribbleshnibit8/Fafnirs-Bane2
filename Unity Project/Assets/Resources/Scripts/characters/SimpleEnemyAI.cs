@@ -6,7 +6,7 @@
  * Method: Calls the Enemy's actions in a set order for each enemy Character.
  * 			1: Find closest Hero
  * 			2: Move as close as possible to the closest Hero
- * 			3: Attempt to attack closest Hero if within range
+ * 			3: Attempt to Attack closest Hero if within Range
  * 			4: End Turn
  *
  * Author: William Witten
@@ -38,7 +38,7 @@ public class SimpleEnemyAI : MonoBehaviour {
 	 * -------------------------------------------------------------------------*/
 	public Vector2 getClosestHero()
 	{
-		int heros = partyHandler.Players; //gets the number of heros still in the scene
+		int heros = PartyHandler.Players; //gets the number of heros still in the scene
 		float closest = 0;
 		Vector2 targetVector = new Vector2();
 		closest = Vector2.Distance (this.transform.position, players [i].transform.position);
@@ -61,7 +61,7 @@ public class SimpleEnemyAI : MonoBehaviour {
 		//pass targetVector to chris's movement script
 		addMovementToQueue(getClosestEnemy()); //call the add move funtion from ui
 			if(vector2.distance(this.transform.position, targetvector) < 2)
-				addAttackToQueue(beginAttack()); //call the add attack function from ui // possibly a bool
+				addAttackToQueue(beginAttack()); //call the add Attack function from ui // possibly a bool
 			addExecute(); //call the execute queue function from ui/wes
 	}
 	*/

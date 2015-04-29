@@ -9,15 +9,15 @@ public class GridGenerator : MonoBehaviour
 	/// </summary>
 	public string GridObject = null;
 	
-	protected List<GameObject> _grid = null;
+	protected List<GameObject> Grid = null;
 
-	protected InputHandler _input;
+	protected InputHandler Input;
 
 	public void Awake()
 	{
-		_input = GetComponent<InputHandler>();
-		_input.ComponentType = "MovementGridSquare";
-		_input.FunctionName = "SetPoint";
+		Input = GetComponent<InputHandler>();
+		Input.ComponentType = "MovementGridSquare";
+		Input.FunctionName = "SetPoint";
 	}
 
 
@@ -29,11 +29,11 @@ public class GridGenerator : MonoBehaviour
 	/// </summary>
 	public virtual void ClearGrid()
 	{
-		foreach (var o in _grid)
+		foreach (var o in Grid)
 		{
 			DestroyImmediate(o);
 		}
-		_grid.Clear();
+		Grid.Clear();
 	}
 
 	#region Create Grid
@@ -75,7 +75,7 @@ public class GridGenerator : MonoBehaviour
 
 	protected void DrawGrid(Vector2 center, int height, int width)
 	{
-		_grid = new List<GameObject>();
+		Grid = new List<GameObject>();
 
 		//center.x = (float)Math.Floor(center.x);
 		//center.y = (float)Math.Ceiling(center.y);
@@ -97,7 +97,7 @@ public class GridGenerator : MonoBehaviour
 				{
 					square.transform.position = offset;
 					square.transform.parent = gameObject.transform;
-					_grid.Add(square);
+					Grid.Add(square);
 				}
 				offset.x++;
 			}

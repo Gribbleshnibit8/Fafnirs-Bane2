@@ -63,7 +63,10 @@ public class AIScript : AIPath2D
 		//List<Vector3> vPath = path.vectorPath;
 
 		if (currentPath.Count == 1)
+		{
 			currentPath.Insert(0, currentPosition);
+			if (!targetReached) { targetReached = true; OnTargetReached(); Debug.Log("TargetReached"); }
+		}
 
 		//if (currentWaypointIndex >= currentPath.Count)
 		//	currentWaypointIndex = currentPath.Count - 1;

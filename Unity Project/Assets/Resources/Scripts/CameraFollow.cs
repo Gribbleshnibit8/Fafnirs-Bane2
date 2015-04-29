@@ -83,6 +83,7 @@ public class CameraFollow : MonoBehaviour
 	/// </summary>
 	void TrackCharacter ()
 	{
+		if (character == null) return;
 		// By default the target x and y coordinates of the camera are it's current x and y coordinates.
 		float targetX = transform.position.x;
 		float targetY = transform.position.y;

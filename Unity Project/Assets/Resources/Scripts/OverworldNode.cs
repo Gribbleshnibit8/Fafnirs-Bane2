@@ -27,8 +27,8 @@ public class OverworldNode : MonoBehaviour
 	/// </summary>
 	public string Dungeon = "";
 
-	#region Unity Functions
 
+	#region Unity Functions
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
