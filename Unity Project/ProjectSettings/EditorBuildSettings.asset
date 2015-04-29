@@ -11,3 +11,21 @@ EditorBuildSettings:
     path: Assets/Resources/Scenes/graveyard.unity
   - enabled: 1
     path: Assets/Resources/Scenes/crypt.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/dungeon.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/fafnirsDen.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/field.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/forest.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/forest2.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/forest3.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/town.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/village.unity
+  - enabled: 1
+    path: Assets/Resources/Scenes/village2.unity
