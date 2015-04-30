@@ -6,6 +6,19 @@ using System.Collections;
 public class StoryMenu : MonoBehaviour
 {
 
+	private bool _finished;
+
+	public bool Finished
+	{
+		get
+		{
+			var f = _finished;
+			_finished = false;
+			return f;
+		}
+	}
+
+
 	private UILabel label;
 
 	void Awake()
@@ -61,7 +74,11 @@ public class StoryMenu : MonoBehaviour
 			index++;
 
 			if (index >= lines.Count)
+			{
+				_finished = true;
+				RootMenuManager.Instance.DisableActiveMenu(ActiveMenu.StoryMenu);
 				yield break;
+			}
 
 		}
 

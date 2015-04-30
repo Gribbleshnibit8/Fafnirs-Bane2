@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /* Title Menu
  * 
@@ -15,20 +16,13 @@ public class TitleMenu : MonoBehaviour
 		Settings
 	}
 
-	public GameObject _mainMenu;
-	public GameObject _settingsMenu;
-
-
-	void Awake()
-	{
-		_mainMenu = transform.Find("Main Menu").gameObject;
-		_settingsMenu = transform.Find("Settings Menu").gameObject;
-	}
+	public GameObject MainMenu;
+	public GameObject SettingsMenu;
 
 
 	public ActiveMenu GetActiveMenu()
 	{
-		if (_settingsMenu.activeSelf)
+		if (SettingsMenu.activeSelf)
 			return ActiveMenu.Settings;
 
 		return ActiveMenu.Main;
@@ -59,8 +53,10 @@ public class TitleMenu : MonoBehaviour
 	private void StartGame()
     {
         Debug.Log("Starting game");
-	    _mainMenu.SetActive(false);
-        GameInstance.Instance.StartState();
+		RootMenuManager.Instance.SetActiveMenu(global::ActiveMenu.StoryMenu);
+		RootMenuManager.Instance.SetActiveMenu(global::ActiveMenu.OverworldMenu, false);
+
+		((StoryMenu)RootMenuManager.Instance.GetActiveMenuComponent(global::ActiveMenu.StoryMenu)).LoadStory("opening");
     }
 
 }

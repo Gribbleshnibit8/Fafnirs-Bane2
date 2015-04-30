@@ -84,6 +84,16 @@ public class RootMenuManager : MonoBehaviour
 		_menusList[(int)menu].gameObject.SetActive(true);
 	}
 
+	/// <summary>
+	/// Sets the specified menu as active, optionally you can leave the other active menu or menues enabled
+	/// </summary>
+	/// <param name="menu">The ActiveMenu enum value to set as active</param>
+	/// <param name="disableAll">Optional: Disable other menus, false to leave them active</param>
+	public void DisableActiveMenu(ActiveMenu menu)
+	{
+		_menusList[(int)menu].gameObject.SetActive(false);
+	}
+
 
 	/// <summary>
 	/// Gives the script component of the specified menu
